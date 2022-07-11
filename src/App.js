@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from 'react';
-
 import Questions from './components/Questions';
+import Intro from './components/Intro';
 
 const placeholderObject = [
   {
-    category: 'History',
-    type: 'multiple',
-    difficulty: 'hard',
-    question:
-      'When%20did%20Lithuania%20declare%20independence%20from%20the%20Soviet%20Union%3F',
-    correct_answer: 'March%2011th%2C%201990',
-    incorrect_answers: [
-      'December%2025th%2C%201991',
-      'December%205th%2C%201991',
-      'April%2020th%2C%201989',
-    ],
+    category: '',
+    type: '',
+    difficulty: '',
+    question: '',
+    correct_answer: '',
+    incorrect_answers: ['', '', ''],
   },
 ];
 
-const placeholderAllAnswers = [
-  'March%2011th%2C%201990',
-  'December%2025th%2C%201991',
-  'December%205th%2C%201991',
-  'April%2020th%2C%201989',
-];
+const placeholderAllAnswers = ['', '', '', ''];
 
 const App = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -34,10 +24,14 @@ const App = () => {
   const [points, setPoints] = useState(0);
   const [pointsCalculated, setPointsCalculated] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState(placeholderAllAnswers);
+  const [buttonText, setButtonText] = useState('');
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const numberOfQuestions = 5;
 
   useEffect(() => {
     fetch(
-      'https://opentdb.com/api.php?amount=1&category=18&type=multiple&encode=url3986',
+      'https://opentdb.com/api.php?amount=1&category=17&type=multiple&encode=url3986',
     )
       .then((res) => res.json())
       .then((data) => setCurrentQuestion(data.results));
@@ -45,6 +39,7 @@ const App = () => {
 
   useEffect(() => {
     setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentQuestion]);
 
   // const category = decodeURIComponent(currentQuestion[0].category);
@@ -63,21 +58,26 @@ const App = () => {
       setShowResults(false);
       setPointsCalculated(false);
       setQuestionNumber((prevNum) => prevNum + 1);
+      setButtonText('Select answer');
     }
   };
 
   const selectAnswer = (answer) => {
     if (!showResults) {
       setSelectedAnswer(answer);
+      setButtonText('Check answers');
     }
   };
 
   const confirm = () => {
-    if (selectedAnswer === '') {
+    if (showResults === true) {
+      newQuestion();
+    } else if (selectedAnswer === '') {
       alert('Please select an answer');
     } else {
       setShowResults(true);
       calculatePoints();
+      setButtonText('Next Question');
     }
   };
 
@@ -109,20 +109,27 @@ const App = () => {
     }
   };
 
-  console.log('questionNumber', questionNumber);
+  const startGame = () => {
+    setGameStarted(true);
+  };
 
   return (
     <div className="App">
-      <Questions
-        question={question}
-        points={points}
-        shuffledAnswers={shuffledAnswers}
-        newQuestion={newQuestion}
-        styles={styles}
-        selectAnswer={selectAnswer}
-        confirm={confirm}
-        questionNumber={questionNumber}
-      />
+      {!gameStarted ? (
+        <Intro onClick={startGame} />
+      ) : (
+        <Questions
+          question={question}
+          points={points}
+          shuffledAnswers={shuffledAnswers}
+          styles={styles}
+          selectAnswer={selectAnswer}
+          confirm={confirm}
+          questionNumber={questionNumber}
+          buttonText={buttonText}
+          numberOfQuestions={numberOfQuestions}
+        />
+      )}
     </div>
   );
 };
