@@ -26,7 +26,7 @@ const placeholderAllAnswers = [
 ];
 
 const App = () => {
-  const [questionNumber, setquestionNumber] = useState(1);
+  const [questionNumber, setQuestionNumber] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(placeholderObject);
   const [reloadQuestions, setReloadQuestions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -62,7 +62,7 @@ const App = () => {
       setSelectedAnswer('');
       setShowResults(false);
       setPointsCalculated(false);
-      setquestionNumber((prevNum) => prevNum + 1);
+      setQuestionNumber((prevNum) => prevNum + 1);
     }
   };
 
