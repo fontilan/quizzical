@@ -1,35 +1,11 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+import Question from './Question';
 
-const Question = ({
-  question,
-  points,
-  shuffledAnswers,
-  selectAnswer,
-  styles,
-  questionNumber,
-}) => {
+const Button = ({ buttonText, onClick }) => {
   return (
-    <div className="question-card">
-      <p className="question-card--question">{question}</p>
-      <div>
-        Current points: {points} / {questionNumber}
-      </div>
-      <div className="question-card--answers">
-        {shuffledAnswers.map((answer) => (
-          <button
-            className="question-card--answers--answer"
-            key={nanoid()}
-            value={answer}
-            onClick={() => selectAnswer(answer)}
-            style={styles(answer)}
-            selected={false}
-          >
-            {decodeURIComponent(answer)}
-          </button>
-        ))}
-      </div>
-    </div>
+    <button className="questionsSection--button" onClick={onClick}>
+      {buttonText}
+    </button>
   );
 };
 
@@ -37,11 +13,12 @@ const Questions = ({
   question,
   points,
   shuffledAnswers,
-  newQuestion,
   selectAnswer,
   styles,
   confirm,
   questionNumber,
+  buttonText,
+  numberOfQuestions,
 }) => {
   return (
     <div className="questionsSection">
@@ -52,22 +29,9 @@ const Questions = ({
         styles={styles}
         selectAnswer={selectAnswer}
         questionNumber={questionNumber}
+        numberOfQuestions={numberOfQuestions}
       />
-      <button
-        type="button"
-        className="questionsSection--button"
-        onClick={confirm}
-      >
-        Check
-      </button>
-      <br />
-      <button
-        type="button"
-        className="questionsSection--button"
-        onClick={newQuestion}
-      >
-        Next Question
-      </button>
+      <Button buttonText={buttonText} onClick={confirm} />
     </div>
   );
 };
