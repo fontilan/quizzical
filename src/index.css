@@ -85,7 +85,7 @@ body {
   MAIN SCREEN AKA QUESTIONSSECTION
 */
 .questionsSection {
-  width: min(90vw, 800px);
+  width: min(98vw, 800px);
 }
 .questionsSection--button {
   background-color: #4d5b9e;
