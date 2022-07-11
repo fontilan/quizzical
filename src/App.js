@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+
+import Questions from './components/Questions';
 
 const placeholderObject = [
   {
@@ -17,21 +18,34 @@ const placeholderObject = [
   },
 ];
 
+const placeholderAllAnswers = [
+  'March%2011th%2C%201990',
+  'December%2025th%2C%201991',
+  'December%205th%2C%201991',
+  'April%2020th%2C%201989',
+];
+
 const App = () => {
+  const [questionNumber, setquestionNumber] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(placeholderObject);
   const [reloadQuestions, setReloadQuestions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [points, setPoints] = useState(0);
   const [pointsCalculated, setPointsCalculated] = useState(false);
+  const [shuffledAnswers, setShuffledAnswers] = useState(placeholderAllAnswers);
 
   useEffect(() => {
     fetch(
-      'https://opentdb.com/api.php?amount=1&category=19&type=multiple&encode=url3986',
+      'https://opentdb.com/api.php?amount=1&category=18&type=multiple&encode=url3986',
     )
       .then((res) => res.json())
       .then((data) => setCurrentQuestion(data.results));
   }, [reloadQuestions]);
+
+  useEffect(() => {
+    setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5));
+  }, [currentQuestion]);
 
   // const category = decodeURIComponent(currentQuestion[0].category);
   // const difficulty = currentQuestion[0].difficulty;
@@ -42,13 +56,13 @@ const App = () => {
 
   const allAnswers = [correctAnswer, ...incorrectAnswers];
 
-  // this just switches the state from true to false to true etc. and based on this change the useEffect is triggered and a new question is fetched from the API
   const newQuestion = () => {
     if (pointsCalculated === true) {
       setReloadQuestions((reloadQuestions) => !reloadQuestions);
       setSelectedAnswer('');
       setShowResults(false);
       setPointsCalculated(false);
+      setquestionNumber((prevNum) => prevNum + 1);
     }
   };
 
@@ -70,7 +84,7 @@ const App = () => {
   const calculatePoints = () => {
     if (pointsCalculated === false) {
       if (selectedAnswer === correctAnswer) {
-        setPoints((oldValue) => oldValue + 1);
+        setPoints((prevPoints) => prevPoints + 1);
       }
     }
     setPointsCalculated(true);
@@ -95,43 +109,20 @@ const App = () => {
     }
   };
 
+  console.log('questionNumber', questionNumber);
+
   return (
     <div className="App">
-      <div className="questionsSection">
-        <div className="question-card">
-          <p className="question-card--question">{question}</p>
-          <div>DEBUG current points: {points}</div>
-          <div className="question-card--answers">
-            {allAnswers.map((answer) => (
-              <button
-                className="question-card--answers--answer"
-                key={nanoid()}
-                value={answer}
-                onClick={() => selectAnswer(answer)}
-                style={styles(answer)}
-                selected={false}
-              >
-                {decodeURIComponent(answer)}
-              </button>
-            ))}
-          </div>
-        </div>
-        <button
-          type="button"
-          className="questionsSection--button"
-          onClick={confirm}
-        >
-          Check
-        </button>
-        <br />
-        <button
-          type="button"
-          className="questionsSection--button"
-          onClick={newQuestion}
-        >
-          Next Question
-        </button>
-      </div>
+      <Questions
+        question={question}
+        points={points}
+        shuffledAnswers={shuffledAnswers}
+        newQuestion={newQuestion}
+        styles={styles}
+        selectAnswer={selectAnswer}
+        confirm={confirm}
+        questionNumber={questionNumber}
+      />
     </div>
   );
 };
