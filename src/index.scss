@@ -132,6 +132,7 @@ body {
     gap: 1em;
     justify-content: flex-start;
     margin-top: 0.75em;
+    word-wrap: break-word;
 
     &--answer {
       background-color: $clr-white-lighter;
@@ -142,7 +143,7 @@ body {
       font-size: 1rem;
       font-weight: 500;
       min-width: 100px;
-      padding: 0.5em 1em 0.5em;
+      padding: 0.25em 0.5em 0.25em;
     }
   }
 }
