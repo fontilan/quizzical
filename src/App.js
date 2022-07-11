@@ -48,6 +48,7 @@ const App = () => {
       setReloadQuestions((reloadQuestions) => !reloadQuestions);
       setSelectedAnswer('');
       setShowResults(false);
+      setPointsCalculated(false);
     }
   };
 
@@ -67,10 +68,12 @@ const App = () => {
   };
 
   const calculatePoints = () => {
-    if (selectedAnswer === correctAnswer) {
-      setPoints((oldValue) => oldValue + 1);
-      setPointsCalculated(true);
-    } else setPointsCalculated(true);
+    if (pointsCalculated === false) {
+      if (selectedAnswer === correctAnswer) {
+        setPoints((oldValue) => oldValue + 1);
+      }
+    }
+    setPointsCalculated(true);
   };
 
   const styles = (answer) => {
@@ -118,7 +121,7 @@ const App = () => {
           className="questionsSection--button"
           onClick={confirm}
         >
-          Confirm
+          Check
         </button>
         <br />
         <button
