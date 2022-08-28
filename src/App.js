@@ -24,8 +24,9 @@ const App = () => {
   const [points, setPoints] = useState(0);
   const [pointsCalculated, setPointsCalculated] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState(placeholderAllAnswers);
-  const [buttonText, setButtonText] = useState('');
+  const [buttonText, setButtonText] = useState('Select answer');
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
 
   const numberOfQuestions = 5;
 
@@ -70,14 +71,17 @@ const App = () => {
   };
 
   const confirm = () => {
-    if (showResults === true) {
-      newQuestion();
-    } else if (selectedAnswer === '') {
+    if (selectedAnswer === '') {
       alert('Please select an answer');
+    }
+    setShowResults(true);
+    calculatePoints();
+    if (questionNumber === 5) {
+      setButtonText('See results');
+      setGameEnded(true);
     } else {
-      setShowResults(true);
-      calculatePoints();
       setButtonText('Next Question');
+      newQuestion();
     }
   };
 
@@ -130,6 +134,7 @@ const App = () => {
           numberOfQuestions={numberOfQuestions}
         />
       )}
+      {gameEnded && <p>You scored {points} out of 5!</p>}
     </div>
   );
 };
