@@ -16,17 +16,17 @@ const placeholderObject = [
 const placeholderAllAnswers = ['', '', '', ''];
 
 const App = () => {
-  const [questionNumber, setQuestionNumber] = useState(1);
+  const [buttonText, setButtonText] = useState('Select answer');
   const [currentQuestion, setCurrentQuestion] = useState(placeholderObject);
+  const [gameEnded, setGameEnded] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [points, setPoints] = useState(0);
+  const [pointsCalculated, setPointsCalculated] = useState(false);
+  const [questionNumber, setQuestionNumber] = useState(1);
   const [reloadQuestions, setReloadQuestions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [points, setPoints] = useState(0);
-  const [pointsCalculated, setPointsCalculated] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState(placeholderAllAnswers);
-  const [buttonText, setButtonText] = useState('Select answer');
-  const [gameStarted, setGameStarted] = useState(false);
-  const [gameEnded, setGameEnded] = useState(false);
 
   const numberOfQuestions = 5;
 
@@ -53,14 +53,14 @@ const App = () => {
   const allAnswers = [correctAnswer, ...incorrectAnswers];
 
   const newQuestion = () => {
-    if (pointsCalculated === true) {
-      setReloadQuestions((reloadQuestions) => !reloadQuestions);
-      setSelectedAnswer('');
-      setShowResults(false);
-      setPointsCalculated(false);
-      setQuestionNumber((prevNum) => prevNum + 1);
-      setButtonText('Select answer');
-    }
+    // if (pointsCalculated === true) {
+    setReloadQuestions((reloadQuestions) => !reloadQuestions);
+    setSelectedAnswer('');
+    setShowResults(false);
+    setPointsCalculated(false);
+    setQuestionNumber((prevNum) => prevNum + 1);
+    setButtonText('Select answer');
+    // }
   };
 
   const selectAnswer = (answer) => {
@@ -71,17 +71,30 @@ const App = () => {
   };
 
   const confirm = () => {
+    // first check if any answer was selected - otherwise alert the user to select one
     if (selectedAnswer === '') {
       alert('Please select an answer');
     }
-    setShowResults(true);
-    calculatePoints();
-    if (questionNumber === 5) {
-      setButtonText('See results');
-      setGameEnded(true);
-    } else {
-      setButtonText('Next Question');
-      newQuestion();
+    // if the user selected an answer
+    else {
+      // check if the points were calculated, if not - calculate points and show the correct answer
+      if (pointsCalculated === false) {
+        setShowResults(true);
+        calculatePoints();
+        // set the button text according to whether or not it is the last question
+        if (questionNumber < 5) {
+          setButtonText('Next question');
+        } else setButtonText('See results');
+      }
+      // if the points were calculated we can proceed
+      else {
+        // if it was the final question initiate end game
+        if (questionNumber === 5) {
+          setGameEnded(true);
+        }
+        // otherwise show next question
+        else newQuestion();
+      }
     }
   };
 
@@ -98,7 +111,10 @@ const App = () => {
     if (showResults === false) {
       return {
         backgroundColor: selectedAnswer === answer ? '#d6dbf5' : '#ffffff',
-        border: selectedAnswer === answer ? 'none' : 'solid 1px #4d5b9e',
+        border:
+          selectedAnswer === answer
+            ? 'solid 1px transparent'
+            : 'solid 1px #4d5b9e',
       };
     } else if (selectedAnswer === answer && selectedAnswer !== correctAnswer)
       return {
