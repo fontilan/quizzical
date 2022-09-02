@@ -53,14 +53,12 @@ const App = () => {
   const allAnswers = [correctAnswer, ...incorrectAnswers];
 
   const newQuestion = () => {
-    // if (pointsCalculated === true) {
     setReloadQuestions((reloadQuestions) => !reloadQuestions);
     setSelectedAnswer('');
     setShowResults(false);
     setPointsCalculated(false);
     setQuestionNumber((prevNum) => prevNum + 1);
     setButtonText('Select answer');
-    // }
   };
 
   const selectAnswer = (answer) => {
