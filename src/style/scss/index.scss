@@ -61,8 +61,8 @@ html {
 
 body {
   background-color: #94d7a2;
-  background: url(./images/blob-top.svg) top -6em right -6em no-repeat,
-    url(./images/blob-bottom.svg) bottom -6em left -6em no-repeat;
+  background: url(/src/images/blob-top.svg) top -6em right -6em no-repeat,
+    url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
   color: $clr-blue-darker;
   font-size: 20px;
 }
