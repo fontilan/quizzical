@@ -105,49 +105,29 @@ const App = () => {
     setPointsCalculated(true);
   };
 
-  const styles = (answer) => {
-    if (showResults === false) {
-      return {
-        backgroundColor: selectedAnswer === answer ? '#d6dbf5' : '#ffffff',
-        border:
-          selectedAnswer === answer
-            ? 'solid 1px transparent'
-            : 'solid 1px #4d5b9e',
-      };
-    } else if (selectedAnswer === answer && selectedAnswer !== correctAnswer)
-      return {
-        backgroundColor: '#f8bcbc',
-        border: 'none',
-      };
-    else if (answer === correctAnswer) {
-      return {
-        backgroundColor: '#94d7a2',
-        border: 'none',
-      };
-    }
-  };
-
   const startGame = () => {
     setGameStarted(true);
   };
 
   return (
     <div className="App">
-      {!gameStarted ? (
-        <Intro onClick={startGame} />
-      ) : (
+      {!gameStarted && <Intro onClick={startGame} />}
+      {gameStarted && question && (
         <Questions
-          question={question}
-          points={points}
-          shuffledAnswers={shuffledAnswers}
-          styles={styles}
-          selectAnswer={selectAnswer}
-          confirm={confirm}
-          questionNumber={questionNumber}
           buttonText={buttonText}
+          confirm={confirm}
+          correctAnswer={correctAnswer}
           numberOfQuestions={numberOfQuestions}
+          points={points}
+          question={question}
+          questionNumber={questionNumber}
+          selectAnswer={selectAnswer}
+          selectedAnswer={selectedAnswer}
+          showResults={showResults}
+          shuffledAnswers={shuffledAnswers}
         />
       )}
+
       {gameEnded && <p>You scored {points} out of 5!</p>}
     </div>
   );

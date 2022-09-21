@@ -10,26 +10,30 @@ const Button = ({ buttonText, onClick }) => {
 };
 
 const Questions = ({
-  question,
-  points,
-  shuffledAnswers,
-  selectAnswer,
-  styles,
-  confirm,
-  questionNumber,
   buttonText,
+  confirm,
+  correctAnswer,
   numberOfQuestions,
+  points,
+  question,
+  questionNumber,
+  selectAnswer,
+  selectedAnswer,
+  showResults,
+  shuffledAnswers,
 }) => {
   return (
     <div className="questionsSection">
       <Question
-        question={question}
-        points={points}
-        shuffledAnswers={shuffledAnswers}
-        styles={styles}
-        selectAnswer={selectAnswer}
-        questionNumber={questionNumber}
+        correctAnswer={correctAnswer}
         numberOfQuestions={numberOfQuestions}
+        points={points}
+        question={question}
+        questionNumber={questionNumber}
+        selectAnswer={selectAnswer}
+        selectedAnswer={selectedAnswer}
+        showResults={showResults}
+        shuffledAnswers={shuffledAnswers}
       />
       <Button buttonText={buttonText} onClick={confirm} />
     </div>
