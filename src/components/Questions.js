@@ -1,17 +1,7 @@
 import React from 'react';
 import Question from './Question';
 
-const Button = ({ buttonText, onClick }) => {
-  return (
-    <button className="questionsSection--button" onClick={onClick}>
-      {buttonText}
-    </button>
-  );
-};
-
 const Questions = ({
-  buttonText,
-  confirm,
   correctAnswer,
   numberOfQuestions,
   points,
@@ -35,7 +25,6 @@ const Questions = ({
         showResults={showResults}
         shuffledAnswers={shuffledAnswers}
       />
-      <Button buttonText={buttonText} onClick={confirm} />
     </div>
   );
 };

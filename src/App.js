@@ -49,7 +49,6 @@ const App = () => {
   const question = decodeURIComponent(currentQuestion[0].question);
   const correctAnswer = currentQuestion[0].correct_answer;
   const incorrectAnswers = currentQuestion[0].incorrect_answers;
-
   const allAnswers = [correctAnswer, ...incorrectAnswers];
 
   const newQuestion = () => {
@@ -80,14 +79,14 @@ const App = () => {
         setShowResults(true);
         calculatePoints();
         // set the button text according to whether or not it is the last question
-        if (questionNumber < 5) {
+        if (questionNumber < numberOfQuestions) {
           setButtonText('Next question');
         } else setButtonText('See results');
       }
       // if the points were calculated we can proceed
       else {
         // if it was the final question initiate end game
-        if (questionNumber === 5) {
+        if (questionNumber === numberOfQuestions) {
           setGameEnded(true);
         }
         // otherwise show next question
@@ -109,13 +108,22 @@ const App = () => {
     setGameStarted(true);
   };
 
+  const Button = ({ buttonText, onClick }) => {
+    return (
+      <button
+        className="questionsSection--button"
+        onClick={onClick}
+        type="button">
+        {buttonText}
+      </button>
+    );
+  };
+
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startGame} />}
       {gameStarted && question && (
         <Questions
-          buttonText={buttonText}
-          confirm={confirm}
           correctAnswer={correctAnswer}
           numberOfQuestions={numberOfQuestions}
           points={points}
@@ -127,8 +135,13 @@ const App = () => {
           shuffledAnswers={shuffledAnswers}
         />
       )}
-
-      {gameEnded && <p>You scored {points} out of 5!</p>}
+      <Button buttonText={buttonText} onClick={confirm} />
+      {/* the element below could be a separate component */}
+      {gameEnded && (
+        <p>
+          You scored {points} out of {numberOfQuestions}!
+        </p>
+      )}
     </div>
   );
 };
