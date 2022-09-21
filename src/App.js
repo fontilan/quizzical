@@ -135,7 +135,8 @@ const App = () => {
           shuffledAnswers={shuffledAnswers}
         />
       )}
-      <Button buttonText={buttonText} onClick={confirm} />
+      {/* the button below should be merged with the intro button */}
+      {gameStarted && <Button buttonText={buttonText} onClick={confirm} />}
       {/* the element below could be a separate component */}
       {gameEnded && (
         <p>
