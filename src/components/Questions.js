@@ -3,10 +3,7 @@ import Question from './Question';
 
 const Questions = ({
   correctAnswer,
-  numberOfQuestions,
-  points,
   question,
-  questionNumber,
   selectAnswer,
   selectedAnswer,
   showResults,
@@ -16,10 +13,7 @@ const Questions = ({
     <div className="questionsSection">
       <Question
         correctAnswer={correctAnswer}
-        numberOfQuestions={numberOfQuestions}
-        points={points}
         question={question}
-        questionNumber={questionNumber}
         selectAnswer={selectAnswer}
         selectedAnswer={selectedAnswer}
         showResults={showResults}

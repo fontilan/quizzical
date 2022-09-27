@@ -125,10 +125,7 @@ const App = () => {
       {gameStarted && question && (
         <Questions
           correctAnswer={correctAnswer}
-          numberOfQuestions={numberOfQuestions}
-          points={points}
           question={question}
-          questionNumber={questionNumber}
           selectAnswer={selectAnswer}
           selectedAnswer={selectedAnswer}
           showResults={showResults}

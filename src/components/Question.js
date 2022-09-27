@@ -3,9 +3,7 @@ import { nanoid } from 'nanoid';
 
 const Question = ({
   correctAnswer,
-  numberOfQuestions,
   question,
-  questionNumber,
   selectAnswer,
   selectedAnswer,
   showResults,
@@ -35,9 +33,6 @@ const Question = ({
 
   return (
     <div className="question-card">
-      <p>
-        Question {questionNumber} / {numberOfQuestions}
-      </p>
       <p className="question-card--question">{question}</p>
       <div className="question-card--answers">
         {shuffledAnswers.map((answer) => (
