@@ -16,8 +16,16 @@ const App = () => {
   const [showResults, setShowResults] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState();
 
-  const numberOfQuestions = 5;
-  let allAnswers, question, correctAnswer, incorrectAnswers;
+  let category,
+    correctAnswer,
+    incorrectAnswers,
+    numberOfQuestions,
+    question,
+    allAnswers;
+
+  category = 16;
+  numberOfQuestions = 5;
+
   if (currentQuestion) {
     question = decodeURIComponent(currentQuestion[0].question);
     correctAnswer = currentQuestion[0].correct_answer;
@@ -27,7 +35,7 @@ const App = () => {
 
   useEffect(() => {
     fetch(
-      'https://opentdb.com/api.php?amount=1&category=17&type=multiple&encode=url3986',
+      `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     )
       .then((res) => res.json())
       .then((data) => setCurrentQuestion(data.results));
@@ -37,9 +45,6 @@ const App = () => {
     if (allAnswers)
       setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5));
   }, [currentQuestion]);
-
-  // const category = decodeURIComponent(currentQuestion[0].category);
-  // const difficulty = currentQuestion[0].difficulty;
 
   const newQuestion = () => {
     setReloadQuestions((reloadQuestions) => !reloadQuestions);
