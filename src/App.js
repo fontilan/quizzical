@@ -1,23 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Questions from './components/Questions';
 import Intro from './components/Intro';
 
-const placeholderObject = [
-  {
-    category: '',
-    type: '',
-    difficulty: '',
-    question: '',
-    correct_answer: '',
-    incorrect_answers: ['', '', ''],
-  },
-];
-
-const placeholderAllAnswers = ['', '', '', ''];
-
 const App = () => {
   const [buttonText, setButtonText] = useState('Select answer');
-  const [currentQuestion, setCurrentQuestion] = useState(placeholderObject);
+  const [currentQuestion, setCurrentQuestion] = useState();
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
@@ -26,9 +14,16 @@ const App = () => {
   const [reloadQuestions, setReloadQuestions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [shuffledAnswers, setShuffledAnswers] = useState(placeholderAllAnswers);
+  const [shuffledAnswers, setShuffledAnswers] = useState();
 
   const numberOfQuestions = 5;
+  let allAnswers, question, correctAnswer, incorrectAnswers;
+  if (currentQuestion) {
+    question = decodeURIComponent(currentQuestion[0].question);
+    correctAnswer = currentQuestion[0].correct_answer;
+    incorrectAnswers = currentQuestion[0].incorrect_answers;
+    allAnswers = [correctAnswer, ...incorrectAnswers];
+  }
 
   useEffect(() => {
     fetch(
@@ -39,17 +34,12 @@ const App = () => {
   }, [reloadQuestions]);
 
   useEffect(() => {
-    setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (allAnswers)
+      setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5));
   }, [currentQuestion]);
 
   // const category = decodeURIComponent(currentQuestion[0].category);
   // const difficulty = currentQuestion[0].difficulty;
-
-  const question = decodeURIComponent(currentQuestion[0].question);
-  const correctAnswer = currentQuestion[0].correct_answer;
-  const incorrectAnswers = currentQuestion[0].incorrect_answers;
-  const allAnswers = [correctAnswer, ...incorrectAnswers];
 
   const newQuestion = () => {
     setReloadQuestions((reloadQuestions) => !reloadQuestions);
