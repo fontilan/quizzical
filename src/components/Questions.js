@@ -1,24 +1,22 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
 import Question from './Question';
 
-const Questions = ({
-  correctAnswer,
-  question,
-  selectAnswer,
-  selectedAnswer,
-  showResults,
-  shuffledAnswers,
-}) => {
+const Questions = ({ currentQuestions, gameEnded }) => {
   return (
     <div className="questionsSection">
-      <Question
-        correctAnswer={correctAnswer}
-        question={question}
-        selectAnswer={selectAnswer}
-        selectedAnswer={selectedAnswer}
-        showResults={showResults}
-        shuffledAnswers={shuffledAnswers}
-      />
+      {currentQuestions.map((questionObject) => (
+        <Question
+          correctAnswer={questionObject.correct_answer}
+          question={questionObject.question}
+          shuffledAnswers={[
+            questionObject.correct_answer,
+            ...questionObject.incorrect_answers,
+          ]}
+          gameEnded={gameEnded}
+          key={nanoid()}
+        />
+      ))}
     </div>
   );
 };
