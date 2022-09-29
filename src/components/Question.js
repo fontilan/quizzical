@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-const Question = ({
-  correctAnswer,
-  question,
-  selectAnswer,
-  selectedAnswer,
-  showResults,
-  shuffledAnswers,
-}) => {
+const Question = ({ correctAnswer, question, shuffledAnswers, gameEnded }) => {
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+
+  const selectAnswer = (answer) => {
+    setSelectedAnswer(answer);
+  };
+
   const styles = (answer) => {
-    if (showResults === false) {
+    if (gameEnded === false) {
       return {
         backgroundColor: selectedAnswer === answer ? '#d6dbf5' : '#ffffff',
         border:
@@ -33,7 +32,7 @@ const Question = ({
 
   return (
     <div className="question-card">
-      <p className="question-card--question">{question}</p>
+      <p className="question-card--question">{decodeURIComponent(question)}</p>
       <div className="question-card--answers">
         {shuffledAnswers.map((answer) => (
           <button
