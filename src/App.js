@@ -5,7 +5,7 @@ import Intro from './components/Intro';
 
 const App = () => {
   const [buttonText, setButtonText] = useState('Select answer');
-  const [currentQuestion, setCurrentQuestion] = useState();
+  const [currentQuestions, setCurrentQuestions] = useState();
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
@@ -14,7 +14,6 @@ const App = () => {
   const [reloadQuestions, setReloadQuestions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [shuffledAnswers, setShuffledAnswers] = useState();
 
   let category,
     correctAnswer,
@@ -26,25 +25,13 @@ const App = () => {
   category = 16;
   numberOfQuestions = 5;
 
-  if (currentQuestion) {
-    question = decodeURIComponent(currentQuestion[0].question);
-    correctAnswer = currentQuestion[0].correct_answer;
-    incorrectAnswers = currentQuestion[0].incorrect_answers;
-    allAnswers = [correctAnswer, ...incorrectAnswers];
-  }
-
   useEffect(() => {
     fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     )
       .then((res) => res.json())
-      .then((data) => setCurrentQuestion(data.results));
+      .then((data) => setCurrentQuestions(data.results));
   }, [reloadQuestions]);
-
-  useEffect(() => {
-    if (allAnswers)
-      setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5));
-  }, [currentQuestion]);
 
   const newQuestion = () => {
     setReloadQuestions((reloadQuestions) => !reloadQuestions);
@@ -55,37 +42,20 @@ const App = () => {
     setButtonText('Select answer');
   };
 
-  const selectAnswer = (answer) => {
-    if (!showResults) {
-      setSelectedAnswer(answer);
-      setButtonText('Check answers');
-    }
-  };
-
   const confirm = () => {
-    // first check if any answer was selected - otherwise alert the user to select one
     if (selectedAnswer === '') {
       alert('Please select an answer');
-    }
-    // if the user selected an answer
-    else {
-      // check if the points were calculated, if not - calculate points and show the correct answer
+    } else {
       if (pointsCalculated === false) {
         setShowResults(true);
         calculatePoints();
-        // set the button text according to whether or not it is the last question
         if (questionNumber < numberOfQuestions) {
           setButtonText('Next question');
         } else setButtonText('See results');
-      }
-      // if the points were calculated we can proceed
-      else {
-        // if it was the final question initiate end game
+      } else {
         if (questionNumber === numberOfQuestions) {
           setGameEnded(true);
-        }
-        // otherwise show next question
-        else newQuestion();
+        } else newQuestion();
       }
     }
   };
@@ -117,15 +87,8 @@ const App = () => {
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startGame} />}
-      {gameStarted && question && (
-        <Questions
-          correctAnswer={correctAnswer}
-          question={question}
-          selectAnswer={selectAnswer}
-          selectedAnswer={selectedAnswer}
-          showResults={showResults}
-          shuffledAnswers={shuffledAnswers}
-        />
+      {gameStarted && currentQuestions && (
+        <Questions currentQuestions={currentQuestions} gameEnded={gameEnded} />
       )}
       {/* the button below should be merged with the intro button */}
       {gameStarted && <Button buttonText={buttonText} onClick={confirm} />}
