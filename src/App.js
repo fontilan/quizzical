@@ -12,18 +12,13 @@ const App = () => {
   const [pointsCalculated, setPointsCalculated] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [reloadQuestions, setReloadQuestions] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState('');
+  // const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
 
-  let category,
-    correctAnswer,
-    incorrectAnswers,
-    numberOfQuestions,
-    question,
-    allAnswers;
+  let category, numberOfQuestions;
 
   category = 16;
-  numberOfQuestions = 5;
+  numberOfQuestions = 2;
 
   useEffect(() => {
     fetch(
@@ -33,41 +28,33 @@ const App = () => {
       .then((data) => setCurrentQuestions(data.results));
   }, [reloadQuestions]);
 
-  const newQuestion = () => {
-    setReloadQuestions((reloadQuestions) => !reloadQuestions);
-    setSelectedAnswer('');
-    setShowResults(false);
-    setPointsCalculated(false);
-    setQuestionNumber((prevNum) => prevNum + 1);
-    setButtonText('Select answer');
-  };
+  // const newQuestion = () => {
+  //   setReloadQuestions((reloadQuestions) => !reloadQuestions);
+  //   setSelectedAnswer('');
+  //   setShowResults(false);
+  //   setPointsCalculated(false);
+  //   setQuestionNumber((prevNum) => prevNum + 1);
+  //   setButtonText('Select answer');
+  // };
 
   const confirm = () => {
-    if (selectedAnswer === '') {
-      alert('Please select an answer');
-    } else {
-      if (pointsCalculated === false) {
-        setShowResults(true);
-        calculatePoints();
-        if (questionNumber < numberOfQuestions) {
-          setButtonText('Next question');
-        } else setButtonText('See results');
-      } else {
-        if (questionNumber === numberOfQuestions) {
-          setGameEnded(true);
-        } else newQuestion();
-      }
+    if (pointsCalculated === false) {
+      setShowResults(true);
+      // calculatePoints();
+      if (questionNumber < numberOfQuestions) {
+        setButtonText('Next question');
+      } else setButtonText('See results');
     }
   };
 
-  const calculatePoints = () => {
-    if (pointsCalculated === false) {
-      if (selectedAnswer === correctAnswer) {
-        setPoints((prevPoints) => prevPoints + 1);
-      }
-    }
-    setPointsCalculated(true);
-  };
+  // const calculatePoints = () => {
+  //   if (pointsCalculated === false) {
+  //     if (selectedAnswer === correctAnswer) {
+  //       setPoints((prevPoints) => prevPoints + 1);
+  //     }
+  //   }
+  //   setPointsCalculated(true);
+  // };
 
   const startGame = () => {
     setGameStarted(true);
