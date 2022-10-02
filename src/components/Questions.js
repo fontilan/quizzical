@@ -7,6 +7,7 @@ const Questions = ({ currentQuestions, gameEnded }) => {
     <div className="questionsSection">
       {currentQuestions.map((questionObject) => (
         <Question
+          number={questionObject.indexOf}
           correctAnswer={questionObject.correct_answer}
           question={questionObject.question}
           shuffledAnswers={[
