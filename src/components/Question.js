@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-const Question = ({
-  correctAnswer,
-  question,
-  shuffledAnswers,
-  gameEnded,
-  number,
-}) => {
+const Question = ({ correctAnswer, question, shuffledAnswers, gameEnded }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
 
   const selectAnswer = (answer) => {
-    setSelectedAnswer(answer);
-    console.log('answer selected:', answer);
+    if (gameEnded === false) {
+      setSelectedAnswer(answer);
+    }
+    // console.log('answer selected:', answer);
   };
-  console.log('number:', number);
 
   console.log('selectedAnswer:', selectedAnswer);
+  console.log('correctAnswer:', correctAnswer);
 
   const styles = (answer) => {
     if (gameEnded === false) {
