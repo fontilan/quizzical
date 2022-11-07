@@ -1,63 +1,51 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Questions from './components/Questions';
 import Intro from './components/Intro';
 
 const App = () => {
-  const [buttonText, setButtonText] = useState('Select answer');
+  const [buttonText, setButtonText] = useState('Check answers');
   const [currentQuestions, setCurrentQuestions] = useState();
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
-  const [pointsCalculated, setPointsCalculated] = useState(false);
-  const [questionNumber, setQuestionNumber] = useState(1);
-  const [reloadQuestions, setReloadQuestions] = useState(false);
-  // const [selectedAnswer, setSelectedAnswer] = useState('');
-  const [showResults, setShowResults] = useState(false);
 
   let category, numberOfQuestions;
 
-  category = 16;
+  category = 17;
   numberOfQuestions = 2;
 
-  useEffect(() => {
-    fetch(
+  const fetchQuestions = async () => {
+    console.log('fetching questions...');
+    const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
-    )
-      .then((res) => res.json())
-      .then((data) => setCurrentQuestions(data.results));
-  }, [reloadQuestions]);
+    );
+    const jsonQuestionsData = await response.json();
+    setCurrentQuestions(jsonQuestionsData.results);
+    console.log('questions fetched');
+  };
 
-  // const newQuestion = () => {
-  //   setReloadQuestions((reloadQuestions) => !reloadQuestions);
-  //   setSelectedAnswer('');
-  //   setShowResults(false);
-  //   setPointsCalculated(false);
-  //   setQuestionNumber((prevNum) => prevNum + 1);
-  //   setButtonText('Select answer');
-  // };
+  const startNewGame = () => {
+    setPoints(0);
+    setGameStarted(true);
+    setGameEnded(false);
+    fetchQuestions();
+    setButtonText('Confirm');
+  };
 
   const confirm = () => {
-    if (pointsCalculated === false) {
-      setShowResults(true);
-      // calculatePoints();
-      if (questionNumber < numberOfQuestions) {
-        setButtonText('Next question');
-      } else setButtonText('See results');
+    if (gameEnded === false) {
+      setGameEnded(true);
+      calculatePoints();
+      setButtonText('Start New Game');
+    } else {
+      startNewGame();
     }
   };
 
-  // const calculatePoints = () => {
-  //   if (pointsCalculated === false) {
-  //     if (selectedAnswer === correctAnswer) {
-  //       setPoints((prevPoints) => prevPoints + 1);
-  //     }
-  //   }
-  //   setPointsCalculated(true);
-  // };
-
-  const startGame = () => {
-    setGameStarted(true);
+  const calculatePoints = (answer, correctAnswer) => {
+    if (answer === correctAnswer) {
+      setPoints((prevPoints) => prevPoints + 1);
+    }
   };
 
   const Button = ({ buttonText, onClick }) => {
@@ -73,7 +61,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {!gameStarted && <Intro onClick={startGame} />}
+      {!gameStarted && <Intro onClick={startNewGame} />}
       {gameStarted && currentQuestions && (
         <Questions currentQuestions={currentQuestions} gameEnded={gameEnded} />
       )}
