@@ -1,11 +1,11 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import Question from './Question';
 
-const Questions = ({ currentQuestions, gameEnded }) => {
+const Questions = ({ currentQuestions, gameEnded, correctAnswersArray }) => {
   return (
     <div className="questionsSection">
-      {currentQuestions.map((questionObject) => (
+      {currentQuestions.map((questionObject, i) => (
         <Question
           correctAnswer={questionObject.correct_answer}
           question={questionObject.question}
@@ -14,7 +14,9 @@ const Questions = ({ currentQuestions, gameEnded }) => {
             ...questionObject.incorrect_answers,
           ]}
           gameEnded={gameEnded}
-          key={nanoid()}
+          key={i}
+          index={i}
+          correctAnswersArray={correctAnswersArray}
         />
       ))}
     </div>

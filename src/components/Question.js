@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-const Question = ({ correctAnswer, question, shuffledAnswers, gameEnded }) => {
+const Question = ({
+  correctAnswer,
+  question,
+  shuffledAnswers,
+  gameEnded,
+  correctAnswersArray,
+  index,
+}) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [allSelectedAnswers, setAllSelectedAnswers] = useState([...Array(5)]);
 
-  const selectAnswer = (answer) => {
+  const selectAnswer = (answer, index) => {
     if (gameEnded === false) {
+      console.log(index);
+      console.log('allSelectedAnswers:', allSelectedAnswers);
       setSelectedAnswer(answer);
+      setAllSelectedAnswers((prevSel) => {
+        prevSel[index] = answer;
+      });
     }
-    // console.log('answer selected:', answer);
   };
-
-  console.log('selectedAnswer:', selectedAnswer);
-  console.log('correctAnswer:', correctAnswer);
 
   const styles = (answer) => {
     if (gameEnded === false) {
@@ -38,6 +47,7 @@ const Question = ({ correctAnswer, question, shuffledAnswers, gameEnded }) => {
 
   return (
     <div className="question-card">
+      <p>allSelectedAnswers: {allSelectedAnswers}</p>
       <p className="question-card--question">{decodeURIComponent(question)}</p>
       <div className="question-card--answers">
         {shuffledAnswers.map((answer) => (
@@ -45,7 +55,7 @@ const Question = ({ correctAnswer, question, shuffledAnswers, gameEnded }) => {
             className="question-card--answers--answer"
             key={nanoid()}
             value={answer}
-            onClick={() => selectAnswer(answer)}
+            onClick={() => selectAnswer(answer, index)}
             style={styles(answer)}>
             {decodeURIComponent(answer)}
           </button>

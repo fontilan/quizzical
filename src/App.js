@@ -8,6 +8,7 @@ const App = () => {
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
+  const correctAnswersArray = [];
 
   let category, numberOfQuestions;
 
@@ -59,11 +60,22 @@ const App = () => {
     );
   };
 
+  if (currentQuestions) {
+    currentQuestions.forEach((question) =>
+      correctAnswersArray.push(question.correct_answer),
+    );
+  }
+
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startNewGame} />}
+      {correctAnswersArray}
       {gameStarted && currentQuestions && (
-        <Questions currentQuestions={currentQuestions} gameEnded={gameEnded} />
+        <Questions
+          currentQuestions={currentQuestions}
+          gameEnded={gameEnded}
+          correctAnswersArray={correctAnswersArray}
+        />
       )}
       {/* the button below should be merged with the intro button */}
       {gameStarted && <Button buttonText={buttonText} onClick={confirm} />}
