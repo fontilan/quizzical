@@ -8,7 +8,6 @@ const App = () => {
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
-  const correctAnswersArray = [];
 
   let category, numberOfQuestions;
 
@@ -16,14 +15,14 @@ const App = () => {
   numberOfQuestions = 2;
 
   const fetchQuestions = async () => {
-    console.log('fetching questions...');
     const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     );
     const jsonQuestionsData = await response.json();
     setCurrentQuestions(jsonQuestionsData.results);
-    console.log('questions fetched');
   };
+
+  console.log(currentQuestions);
 
   const startNewGame = () => {
     setPoints(0);
@@ -36,18 +35,18 @@ const App = () => {
   const confirm = () => {
     if (gameEnded === false) {
       setGameEnded(true);
-      calculatePoints();
+      // calculatePoints();
       setButtonText('Start New Game');
     } else {
       startNewGame();
     }
   };
 
-  const calculatePoints = (answer, correctAnswer) => {
-    if (answer === correctAnswer) {
-      setPoints((prevPoints) => prevPoints + 1);
-    }
-  };
+  // const calculatePoints = (answer, correctAnswer) => {
+  //   if (answer === correctAnswer) {
+  //     setPoints((prevPoints) => prevPoints + 1);
+  //   }
+  // };
 
   const Button = ({ buttonText, onClick }) => {
     return (
@@ -60,22 +59,11 @@ const App = () => {
     );
   };
 
-  if (currentQuestions) {
-    currentQuestions.forEach((question) =>
-      correctAnswersArray.push(question.correct_answer),
-    );
-  }
-
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startNewGame} />}
-      {correctAnswersArray}
       {gameStarted && currentQuestions && (
-        <Questions
-          currentQuestions={currentQuestions}
-          gameEnded={gameEnded}
-          correctAnswersArray={correctAnswersArray}
-        />
+        <Questions currentQuestions={currentQuestions} gameEnded={gameEnded} />
       )}
       {/* the button below should be merged with the intro button */}
       {gameStarted && <Button buttonText={buttonText} onClick={confirm} />}
