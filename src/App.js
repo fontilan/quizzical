@@ -32,8 +32,6 @@ const App = () => {
     setCurrentQuestions(questions);
   };
 
-  console.log(currentQuestions);
-
   const startNewGame = () => {
     setPoints(0);
     setGameStarted(true);
