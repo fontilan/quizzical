@@ -18,8 +18,17 @@ const App = () => {
     const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     );
-    const jsonQuestionsData = await response.json();
-    setCurrentQuestions(jsonQuestionsData.results);
+    const data = await response.json();
+    let questions = [];
+    data.results.forEach((question) => {
+      questions.push({
+        question: question.question,
+        correct_answer: question.correct_answer,
+        all_answers: question.incorrect_answers,
+        incorrect_answers: question.incorrect_answers,
+      });
+    });
+    setCurrentQuestions(questions);
   };
 
   console.log(currentQuestions);
