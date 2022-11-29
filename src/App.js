@@ -20,12 +20,11 @@ const App = () => {
     );
     const data = await response.json();
     let questions = [];
-    data.results.forEach((question) => {
+    data.results.forEach((q) => {
       questions.push({
-        question: question.question,
-        correct_answer: question.correct_answer,
-        all_answers: question.incorrect_answers,
-        incorrect_answers: question.incorrect_answers,
+        question: q.question,
+        correct_answer: q.correct_answer,
+        all_answers: [...q.incorrect_answers, q.correct_answer],
       });
     });
     setCurrentQuestions(questions);
