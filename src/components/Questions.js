@@ -3,6 +3,7 @@ import React from 'react';
 import Question from './Question';
 
 const Questions = ({ currentQuestions, gameEnded }) => {
+  let isCorrect = false;
   return (
     <div className="questionsSection">
       {currentQuestions.map((questionObject, i) => (
@@ -12,6 +13,7 @@ const Questions = ({ currentQuestions, gameEnded }) => {
           allAnswers={questionObject.all_answers}
           gameEnded={gameEnded}
           key={i}
+          isCorrect={isCorrect}
         />
       ))}
     </div>
