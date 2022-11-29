@@ -24,7 +24,9 @@ const App = () => {
       questions.push({
         question: q.question,
         correct_answer: q.correct_answer,
-        all_answers: [...q.incorrect_answers, q.correct_answer],
+        all_answers: [...q.incorrect_answers, q.correct_answer].sort(
+          () => Math.random() - 0.5,
+        ),
       });
     });
     setCurrentQuestions(questions);
