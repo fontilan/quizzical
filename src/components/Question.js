@@ -5,10 +5,6 @@ const Question = ({ correctAnswer, question, allAnswers, gameEnded }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const isCorrect = false;
 
-  // const shuffledAnswers = [...allAnswers].sort(() => Math.random() - 0.5);
-  // console.log('allAnswers: ', allAnswers);
-  // console.log('shuffledAnswers: ', shuffledAnswers);
-
   const selectAnswer = (answer) => {
     if (gameEnded === false) {
       setSelectedAnswer(answer);
