@@ -6,7 +6,7 @@ const Question = ({
   question,
   allAnswers,
   gameEnded,
-  isCorrect,
+  guessed,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
 
@@ -18,7 +18,7 @@ const Question = ({
 
   if (gameEnded === true) {
     if (selectedAnswer === correctAnswer) {
-      isCorrect = true;
+      guessed = true;
     }
   }
 
@@ -47,7 +47,7 @@ const Question = ({
   return (
     <div className="question-card">
       <p className="question-card--question">{decodeURIComponent(question)}</p>
-      {isCorrect && <p>Correct</p>}
+      {guessed && <p>Correct</p>}
       <div className="question-card--answers">
         {allAnswers.map((answer) => (
           <button

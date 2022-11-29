@@ -27,6 +27,7 @@ const App = () => {
         all_answers: [...q.incorrect_answers, q.correct_answer].sort(
           () => Math.random() - 0.5,
         ),
+        guessed: false,
       });
     });
     setCurrentQuestions(questions);
@@ -43,18 +44,21 @@ const App = () => {
   const confirm = () => {
     if (gameEnded === false) {
       setGameEnded(true);
-      // calculatePoints();
+      calculatePoints();
       setButtonText('Start New Game');
     } else {
       startNewGame();
     }
   };
 
-  // const calculatePoints = (answer, correctAnswer) => {
-  //   if (answer === correctAnswer) {
-  //     setPoints((prevPoints) => prevPoints + 1);
-  //   }
-  // };
+  const calculatePoints = () => {
+    currentQuestions.forEach((question) => {
+      console.log(question.guessed);
+      if (question.guessed) {
+        console.log(question.correct_answer, 'is correct');
+      }
+    });
+  };
 
   const Button = ({ buttonText, onClick }) => {
     return (
