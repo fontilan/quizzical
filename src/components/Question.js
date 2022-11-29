@@ -60,6 +60,7 @@ const Question = ({
           </button>
         ))}
       </div>
+      <hr />
     </div>
   );
 };
