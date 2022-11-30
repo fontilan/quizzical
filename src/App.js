@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Question from './components/Question';
+import Questions from './components/Questions';
 import Intro from './components/Intro';
 
 const App = () => {
@@ -68,23 +68,6 @@ const App = () => {
         type="button">
         {buttonText}
       </button>
-    );
-  };
-
-  const Questions = () => {
-    return (
-      <div className="questionsSection">
-        {currentQuestions.map((questionObject, i) => (
-          <Question
-            correctAnswer={questionObject.correct_answer}
-            question={questionObject.question}
-            allAnswers={questionObject.all_answers}
-            gameEnded={gameEnded}
-            key={i}
-            guessed={questionObject.guessed}
-          />
-        ))}
-      </div>
     );
   };
 
