@@ -1,5 +1,4 @@
 import React from 'react';
-// import { nanoid } from 'nanoid';
 import Question from './Question';
 
 const Questions = ({ currentQuestions, gameEnded }) => {
