@@ -56,6 +56,7 @@ const App = () => {
       console.log(question);
       if (question.guessed) {
         console.log(question.correct_answer, 'is correct');
+        setPoints((points) => points + 1);
       }
     });
   };
