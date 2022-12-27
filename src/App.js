@@ -41,14 +41,14 @@ const App = () => {
     setButtonText('Confirm');
   };
 
+  const endGame = () => {
+    setGameEnded(true);
+    calculatePoints();
+    setButtonText('Start new game');
+  };
+
   const confirm = () => {
-    if (gameEnded === false) {
-      setGameEnded(true);
-      calculatePoints();
-      setButtonText('Start New Game');
-    } else {
-      startNewGame();
-    }
+    gameEnded ? startNewGame() : endGame();
   };
 
   const calculatePoints = () => {
