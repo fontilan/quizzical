@@ -44,8 +44,6 @@ const Question = ({
     }
   };
 
-  console.log('bottom-level', guessed);
-
   return (
     <div className="question-card">
       <p className="question-card--question">{decodeURIComponent(question)}</p>
