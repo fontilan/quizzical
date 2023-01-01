@@ -1,27 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { nanoid } from 'nanoid';
 
 const Question = ({
+  id,
   correctAnswer,
   question,
   allAnswers,
   gameEnded,
-  guessed,
+  selectAnswer,
+  selectedAnswer,
 }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState('');
-
-  const selectAnswer = (answer) => {
-    if (gameEnded === false) {
-      setSelectedAnswer(answer);
-    }
-  };
-
-  if (gameEnded === true) {
-    if (selectedAnswer === correctAnswer) {
-      guessed = true;
-    }
-  }
-
   const styles = (answer) => {
     if (gameEnded === false) {
       return {
@@ -47,14 +35,13 @@ const Question = ({
   return (
     <div className="question-card">
       <p className="question-card--question">{decodeURIComponent(question)}</p>
-      {guessed && <p>Correct</p>}
       <div className="question-card--answers">
         {allAnswers.map((answer) => (
           <button
             className="question-card--answers--answer"
             key={nanoid()}
             value={answer}
-            onClick={() => selectAnswer(answer)}
+            onClick={() => selectAnswer(id, answer)}
             style={styles(answer)}>
             {decodeURIComponent(answer)}
           </button>
