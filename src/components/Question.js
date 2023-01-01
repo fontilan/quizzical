@@ -19,13 +19,13 @@ const Question = ({
             ? 'solid 1px transparent'
             : 'solid 1px #4d5b9e',
       };
-    } else if (selectedAnswer === answer && selectedAnswer !== correctAnswer)
+    } else if (selectedAnswer === answer && selectedAnswer !== correctAnswer) {
       return {
         backgroundColor: '#f8bcbc',
         border: 'none',
         color: '#8F95B0',
       };
-    else if (answer === correctAnswer) {
+    } else if (answer === correctAnswer) {
       return {
         backgroundColor: '#94d7a2',
         border: 'none',
