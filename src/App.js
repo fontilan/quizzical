@@ -51,6 +51,18 @@ const App = () => {
     gameEnded ? startNewGame() : endGame();
   };
 
+  const selectAnswer = (id, answer) => {
+    if (!gameEnded) {
+      setCurrentQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.id === id
+            ? { ...question, selected_answer: answer }
+            : question,
+        ),
+      );
+    }
+  };
+
   const calculatePoints = () => {
     currentQuestions.forEach((question) => {
       if (question.selected_answer === question.correct_answer) {
@@ -72,18 +84,6 @@ const App = () => {
         {buttonText}
       </button>
     );
-  };
-
-  const selectAnswer = (id, answer) => {
-    if (!gameEnded) {
-      setCurrentQuestions((prevQuestions) =>
-        prevQuestions.map((question) =>
-          question.id === id
-            ? { ...question, selected_answer: answer }
-            : question,
-        ),
-      );
-    }
   };
 
   return (
