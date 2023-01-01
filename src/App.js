@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Questions from './components/Questions';
 import Intro from './components/Intro';
+import { nanoid } from 'nanoid';
 
 const App = () => {
   const [buttonText, setButtonText] = useState('Check answers');
@@ -22,11 +23,13 @@ const App = () => {
     let questions = [];
     data.results.forEach((q) => {
       questions.push({
+        id: nanoid(),
         question: q.question,
         correct_answer: q.correct_answer,
         all_answers: [...q.incorrect_answers, q.correct_answer].sort(
           () => Math.random() - 0.5,
         ),
+        selected_answer: '',
         guessed: false,
       });
     });
@@ -53,9 +56,7 @@ const App = () => {
 
   const calculatePoints = () => {
     currentQuestions.forEach((question) => {
-      console.log(question);
-      if (question.guessed) {
-        console.log(question.correct_answer, 'is correct');
+      if (question.selected_answer === question.correct_answer) {
         setPoints((points) => points + 1);
       }
     });
@@ -72,11 +73,25 @@ const App = () => {
     );
   };
 
+  const selectAnswer = (id, answer) => {
+    setCurrentQuestions((prevQuestions) =>
+      prevQuestions.map((question) =>
+        question.id === id
+          ? { ...question, selected_answer: answer }
+          : question,
+      ),
+    );
+  };
+
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startNewGame} />}
       {gameStarted && currentQuestions && (
-        <Questions currentQuestions={currentQuestions} gameEnded={gameEnded} />
+        <Questions
+          currentQuestions={currentQuestions}
+          gameEnded={gameEnded}
+          selectAnswer={selectAnswer}
+        />
       )}
       {/* the button below should be merged with the intro button */}
       {gameStarted && <Button buttonText={buttonText} onClick={confirm} />}
