@@ -12,7 +12,7 @@ const App = () => {
   let category, numberOfQuestions;
 
   category = 17;
-  numberOfQuestions = 2;
+  numberOfQuestions = 5;
 
   const fetchQuestions = async () => {
     const response = await fetch(
