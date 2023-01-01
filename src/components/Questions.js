@@ -1,7 +1,7 @@
 import React from 'react';
 import Question from './Question';
 
-const Questions = ({ currentQuestions, gameEnded }) => {
+const Questions = ({ currentQuestions, gameEnded, selectAnswer }) => {
   return (
     <div className="questionsSection">
       {currentQuestions.map((questionObject, i) => (
@@ -11,7 +11,9 @@ const Questions = ({ currentQuestions, gameEnded }) => {
           allAnswers={questionObject.all_answers}
           gameEnded={gameEnded}
           key={i}
-          guessed={questionObject.guessed}
+          id={questionObject.id}
+          selectAnswer={selectAnswer}
+          selectedAnswer={questionObject.selected_answer}
         />
       ))}
     </div>
