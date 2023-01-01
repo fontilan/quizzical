@@ -23,11 +23,18 @@ const Question = ({
       return {
         backgroundColor: '#f8bcbc',
         border: 'none',
+        color: '#8F95B0',
       };
     else if (answer === correctAnswer) {
       return {
         backgroundColor: '#94d7a2',
         border: 'none',
+      };
+    } else {
+      return {
+        backgroundColor: '#f5f7fb',
+        border: 'solid 1px #A8B0D1',
+        color: '#8F95B0',
       };
     }
   };
