@@ -4,7 +4,6 @@ import Intro from './components/Intro';
 import { nanoid } from 'nanoid';
 
 const App = () => {
-  const [buttonText, setButtonText] = useState('Check answers');
   const [currentQuestions, setCurrentQuestions] = useState();
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
@@ -41,13 +40,11 @@ const App = () => {
     setGameStarted(true);
     setGameEnded(false);
     fetchQuestions();
-    setButtonText('Confirm');
   };
 
   const endGame = () => {
     setGameEnded(true);
     calculatePoints();
-    setButtonText('Start new game');
   };
 
   const confirm = () => {
@@ -62,7 +59,14 @@ const App = () => {
     });
   };
 
-  const Button = ({ buttonText, onClick }) => {
+  const Button = ({ onClick }) => {
+    let buttonText;
+    if (gameStarted) {
+      buttonText = 'Check answers';
+    }
+    if (gameEnded) {
+      buttonText = 'Start new game';
+    }
     return (
       <button
         className="questionsSection--button"
@@ -86,16 +90,18 @@ const App = () => {
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startNewGame} />}
+
       {gameStarted && currentQuestions && (
-        <Questions
-          currentQuestions={currentQuestions}
-          gameEnded={gameEnded}
-          selectAnswer={selectAnswer}
-        />
+        <>
+          <Questions
+            currentQuestions={currentQuestions}
+            gameEnded={gameEnded}
+            selectAnswer={selectAnswer}
+          />
+          <Button onClick={confirm} />
+        </>
       )}
-      {/* the button below should be merged with the intro button */}
-      {gameStarted && <Button buttonText={buttonText} onClick={confirm} />}
-      {/* the element below could be a separate component */}
+
       {gameEnded && (
         <p>
           You scored {points} out of {numberOfQuestions}!
