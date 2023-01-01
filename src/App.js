@@ -65,7 +65,7 @@ const App = () => {
       buttonText = 'Check answers';
     }
     if (gameEnded) {
-      buttonText = 'Start new game';
+      buttonText = 'Play again';
     }
     return (
       <button
@@ -104,7 +104,7 @@ const App = () => {
 
       {gameEnded && (
         <p>
-          You scored {points} out of {numberOfQuestions}!
+          You scored {points}/{numberOfQuestions} correct answers
         </p>
       )}
     </div>
