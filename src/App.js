@@ -68,10 +68,7 @@ const App = () => {
       buttonText = 'Play again';
     }
     return (
-      <button
-        className="questionsSection--button"
-        onClick={onClick}
-        type="button">
+      <button onClick={onClick} type="button">
         {buttonText}
       </button>
     );
