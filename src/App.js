@@ -11,7 +11,7 @@ const App = () => {
 
   let category, numberOfQuestions;
 
-  category = 17;
+  category = 9;
   numberOfQuestions = 5;
 
   const fetchQuestions = async () => {
@@ -78,13 +78,15 @@ const App = () => {
   };
 
   const selectAnswer = (id, answer) => {
-    setCurrentQuestions((prevQuestions) =>
-      prevQuestions.map((question) =>
-        question.id === id
-          ? { ...question, selected_answer: answer }
-          : question,
-      ),
-    );
+    if (!gameEnded) {
+      setCurrentQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.id === id
+            ? { ...question, selected_answer: answer }
+            : question,
+        ),
+      );
+    }
   };
 
   return (
