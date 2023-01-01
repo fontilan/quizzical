@@ -100,14 +100,15 @@ const App = () => {
             gameEnded={gameEnded}
             selectAnswer={selectAnswer}
           />
-          <Button onClick={confirm} />
+          <div className="summary">
+            {gameEnded && (
+              <p>
+                You scored {points}/{numberOfQuestions} correct answers
+              </p>
+            )}
+            <Button onClick={confirm} />
+          </div>
         </>
-      )}
-
-      {gameEnded && (
-        <p>
-          You scored {points}/{numberOfQuestions} correct answers
-        </p>
       )}
     </div>
   );
