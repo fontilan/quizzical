@@ -13,13 +13,13 @@ const Question = ({
   const styles = (answer) => {
     if (gameEnded === false) {
       return {
-        backgroundColor: selectedAnswer === answer ? '#d6dbf5' : '#ffffff',
+        backgroundColor: answer === selectedAnswer ? '#d6dbf5' : '#ffffff',
         border:
-          selectedAnswer === answer
+          answer === selectedAnswer
             ? 'solid 1px transparent'
             : 'solid 1px #4d5b9e',
       };
-    } else if (selectedAnswer === answer && selectedAnswer !== correctAnswer) {
+    } else if (answer === selectedAnswer && selectedAnswer !== correctAnswer) {
       return {
         backgroundColor: '#f8bcbc',
         border: 'none',
@@ -40,12 +40,12 @@ const Question = ({
   };
 
   return (
-    <div className="question-card">
-      <p className="question-card--question">{decodeURIComponent(question)}</p>
-      <div className="question-card--answers">
+    <div className="question_card">
+      <p className="question_card--question">{decodeURIComponent(question)}</p>
+      <div className="question_card--answers">
         {allAnswers.map((answer) => (
           <button
-            className="question-card--answers--answer"
+            className="question_card--answers--answer"
             key={nanoid()}
             onClick={() => selectAnswer(id, answer)}
             style={styles(answer)}
