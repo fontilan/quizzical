@@ -101,7 +101,8 @@ hr {
 }
 .question-card--answers {
   display: flex;
-  gap: 1em;
+  flex-direction: column;
+  gap: 0.5em;
   justify-content: flex-start;
   margin-top: 0.75em;
   word-wrap: break-word;
@@ -138,6 +139,19 @@ SUMMARY SECTION
   cursor: pointer;
   font-weight: 500;
   padding: 1em 3em;
+}
+
+/*
+MEDIA QUERIES
+*/
+@media (min-width: 640px) {
+  .question-card--answers {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin-top: 0.75em;
+    word-wrap: break-word;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
