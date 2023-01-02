@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Summary = ({ confirm, gameEnded, numberOfQuestions, points }) => {
+const Summary = ({ handleClick, gameEnded, numberOfQuestions, points }) => {
   return (
     <div className="summary">
       {gameEnded && (
@@ -8,7 +8,7 @@ const Summary = ({ confirm, gameEnded, numberOfQuestions, points }) => {
           You scored {points}/{numberOfQuestions} correct answers
         </p>
       )}
-      <button className="summary--button" onClick={confirm} type="button">
+      <button className="summary--button" onClick={handleClick} type="button">
         {`${gameEnded ? `Play again` : 'Check answers'}`}
       </button>
     </div>
