@@ -2,11 +2,11 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 
 const Question = ({
-  id,
-  correctAnswer,
-  question,
   allAnswers,
+  correctAnswer,
   gameEnded,
+  id,
+  question,
   selectAnswer,
   selectedAnswer,
 }) => {
@@ -47,9 +47,9 @@ const Question = ({
           <button
             className="question-card--answers--answer"
             key={nanoid()}
-            value={answer}
             onClick={() => selectAnswer(id, answer)}
-            style={styles(answer)}>
+            style={styles(answer)}
+            value={answer}>
             {decodeURIComponent(answer)}
           </button>
         ))}

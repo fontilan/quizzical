@@ -6,12 +6,12 @@ const Questions = ({ currentQuestions, gameEnded, selectAnswer }) => {
     <div className="questionsSection">
       {currentQuestions.map((questionObject, i) => (
         <Question
-          correctAnswer={questionObject.correct_answer}
-          question={questionObject.question}
           allAnswers={questionObject.all_answers}
+          correctAnswer={questionObject.correct_answer}
           gameEnded={gameEnded}
-          key={i}
           id={questionObject.id}
+          key={i}
+          question={questionObject.question}
           selectAnswer={selectAnswer}
           selectedAnswer={questionObject.selected_answer}
         />
