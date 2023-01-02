@@ -52,7 +52,7 @@ const App = () => {
   };
 
   const selectAnswer = (id, answer) => {
-    if (!gameEnded) {
+    if (gameEnded === false) {
       setCurrentQuestions((prevQuestions) =>
         prevQuestions.map((question) =>
           question.id === id
