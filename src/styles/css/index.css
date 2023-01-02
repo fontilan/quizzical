@@ -60,7 +60,7 @@ hr {
 }
 
 /*
-  WELCOME SCREEN
+  WELCOME/INTRO SCREEN
 */
 .intro {
   align-items: center;
@@ -128,11 +128,11 @@ SUMMARY SECTION
   justify-content: space-around;
   gap: 0.75em;
 }
-.summary > p {
+.summary--text {
   color: #293264;
   font-weight: 700;
 }
-.summary > button {
+.summary--button {
   background-color: #4d5b9e;
   border-radius: 0.875em;
   border: none;

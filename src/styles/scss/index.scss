@@ -76,7 +76,7 @@ hr {
 }
 
 /*
-  WELCOME SCREEN
+  WELCOME/INTRO SCREEN
 */
 .intro {
   align-items: center;
@@ -150,12 +150,12 @@ SUMMARY SECTION
   justify-content: space-around;
   gap: 0.75em;
 
-  > p {
+  &--text {
     color: $clr-blue-darker;
     font-weight: 700;
   }
 
-  > button {
+  &--button {
     background-color: $clr-blue-primary;
     border-radius: 0.875em;
     border: none;

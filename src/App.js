@@ -80,7 +80,7 @@ const App = () => {
       buttonText = 'Play again';
     }
     return (
-      <button onClick={onClick} type="button">
+      <button className="summary--button" onClick={onClick} type="button">
         {buttonText}
       </button>
     );
@@ -99,7 +99,7 @@ const App = () => {
           />
           <div className="summary">
             {gameEnded && (
-              <p>
+              <p className="summary--text">
                 You scored {points}/{numberOfQuestions} correct answers
               </p>
             )}
