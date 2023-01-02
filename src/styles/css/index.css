@@ -92,14 +92,14 @@ hr {
 /*
   QUESTIONS
 */
-.question-card {
+.question_card {
   margin-bottom: 1.5em;
 }
-.question-card--question {
+.question_card--question {
   font-size: 1.25rem;
   font-weight: 700;
 }
-.question-card--answers {
+.question_card--answers {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -107,7 +107,7 @@ hr {
   margin-top: 0.75em;
   word-wrap: break-word;
 }
-.question-card--answers--answer {
+.question_card--answers--answer {
   background-color: #ffffff;
   border-radius: 0.875em;
   border: solid 1px #4d5b9e;
@@ -146,7 +146,7 @@ SUMMARY SECTION
 MEDIA QUERIES
 */
 @media (min-width: 640px) {
-  .question-card--answers {
+  .question_card--answers {
     display: flex;
     flex-direction: row;
     gap: 1em;

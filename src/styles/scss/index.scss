@@ -111,7 +111,7 @@ hr {
 /*
   QUESTIONS
 */
-.question-card {
+.question_card {
   margin-bottom: 1.5em;
 
   &--question {
@@ -170,7 +170,7 @@ SUMMARY SECTION
 MEDIA QUERIES
 */
 @media (min-width: 640px) {
-  .question-card {
+  .question_card {
     &--answers {
       display: flex;
       flex-direction: row;
