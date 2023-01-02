@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Questions from './components/Questions';
+
 import Intro from './components/Intro';
+import Questions from './components/Questions';
 import Summary from './components/Summary';
+
 import { nanoid } from 'nanoid';
 
 const App = () => {
