@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Questions from './components/Questions';
 import Intro from './components/Intro';
+import Summary from './components/Summary';
 import { nanoid } from 'nanoid';
 
 const App = () => {
@@ -71,21 +72,6 @@ const App = () => {
     });
   };
 
-  const Button = ({ onClick }) => {
-    let buttonText;
-    if (gameStarted) {
-      buttonText = 'Check answers';
-    }
-    if (gameEnded) {
-      buttonText = 'Play again';
-    }
-    return (
-      <button className="summary--button" onClick={onClick} type="button">
-        {buttonText}
-      </button>
-    );
-  };
-
   return (
     <div className="App">
       {!gameStarted && <Intro onClick={startNewGame} />}
@@ -97,14 +83,12 @@ const App = () => {
             gameEnded={gameEnded}
             selectAnswer={selectAnswer}
           />
-          <div className="summary">
-            {gameEnded && (
-              <p className="summary--text">
-                You scored {points}/{numberOfQuestions} correct answers
-              </p>
-            )}
-            <Button onClick={confirm} />
-          </div>
+          <Summary
+            confirm={confirm}
+            gameEnded={gameEnded}
+            numberOfQuestions={numberOfQuestions}
+            points={points}
+          />
         </>
       )}
     </div>
