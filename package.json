@@ -1,6 +1,5 @@
 {
   "name": "quizzical",
-  "homepage": "https://fontilan.github.io/quizzical",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
