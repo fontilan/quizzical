@@ -126,6 +126,7 @@ SUMMARY SECTION
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 0.75em;
 }
 .summary > p {
   color: #293264;

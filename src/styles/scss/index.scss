@@ -148,6 +148,7 @@ SUMMARY SECTION
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 0.75em;
 
   > p {
     color: $clr-blue-darker;
@@ -174,7 +175,6 @@ MEDIA QUERIES
       display: flex;
       flex-direction: row;
       gap: 1em;
-      // justify-content: flex-start;
       margin-top: 0.75em;
       word-wrap: break-word;
     }
