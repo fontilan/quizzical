@@ -32,7 +32,6 @@ const App = () => {
           () => Math.random() - 0.5,
         ),
         selected_answer: '',
-        guessed: false,
       });
     });
     setCurrentQuestions(questions);
@@ -50,7 +49,7 @@ const App = () => {
     calculatePoints();
   };
 
-  const confirm = () => {
+  const handleClick = () => {
     gameEnded ? startNewGame() : endGame();
   };
 
@@ -86,7 +85,7 @@ const App = () => {
             selectAnswer={selectAnswer}
           />
           <Summary
-            confirm={confirm}
+            handleClick={handleClick}
             gameEnded={gameEnded}
             numberOfQuestions={numberOfQuestions}
             points={points}
