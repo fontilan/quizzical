@@ -55,8 +55,11 @@ function App() {
   };
 
   const handleClick = () => {
-    // eslint-disable-next-line no-unused-expressions
-    gameEnded ? startNewGame() : endGame();
+    if (gameEnded) {
+      startNewGame();
+    } else {
+      endGame();
+    }
   };
 
   const selectAnswer = (id, answer) => {
