@@ -7,6 +7,7 @@ Solo project of the Bob Ziroll's [Learn React for free](https://scrimba.com/lear
 
 I have also implemented a few additional features: 
 - it looks good on smaller screens with answers stacking vertically
+- the code has been refactored in accordance with the Airbnb JavaScript Style Guide using ESLint
 - more to come!
 
 To do:
