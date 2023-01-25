@@ -1,16 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Question from './Question';
 
-const Questions = ({ currentQuestions, gameEnded, selectAnswer }) => {
+function Questions({ currentQuestions, gameEnded, selectAnswer }) {
   return (
     <div className="questionsSection">
-      {currentQuestions.map((questionObject, i) => (
+      {currentQuestions.map((questionObject) => (
         <Question
           allAnswers={questionObject.all_answers}
           correctAnswer={questionObject.correct_answer}
           gameEnded={gameEnded}
           id={questionObject.id}
-          key={i}
+          key={questionObject.id}
           question={questionObject.question}
           selectAnswer={selectAnswer}
           selectedAnswer={questionObject.selected_answer}
@@ -18,6 +19,6 @@ const Questions = ({ currentQuestions, gameEnded, selectAnswer }) => {
       ))}
     </div>
   );
-};
+}
 
 export default Questions;

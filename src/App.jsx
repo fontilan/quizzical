@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 
+import { nanoid } from 'nanoid';
 import Intro from './components/Intro';
 import Questions from './components/Questions';
 import Summary from './components/Summary';
 
-import { nanoid } from 'nanoid';
-
-const App = () => {
+function App() {
   const [currentQuestions, setCurrentQuestions] = useState();
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
 
-  let category, numberOfQuestions;
-
-  category = 9;
-  numberOfQuestions = 5;
+  const category = 9;
+  const numberOfQuestions = 5;
 
   const fetchQuestions = async () => {
     const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     );
     const data = await response.json();
-    let questions = [];
+    const questions = [];
     data.results.forEach((q) => {
       questions.push({
         id: nanoid(),
@@ -44,12 +41,21 @@ const App = () => {
     fetchQuestions();
   };
 
+  const calculatePoints = () => {
+    currentQuestions.forEach((question) => {
+      if (question.selected_answer === question.correct_answer) {
+        setPoints((pts) => pts + 1);
+      }
+    });
+  };
+
   const endGame = () => {
     setGameEnded(true);
     calculatePoints();
   };
 
   const handleClick = () => {
+    // eslint-disable-next-line no-unused-expressions
     gameEnded ? startNewGame() : endGame();
   };
 
@@ -63,14 +69,6 @@ const App = () => {
         ),
       );
     }
-  };
-
-  const calculatePoints = () => {
-    currentQuestions.forEach((question) => {
-      if (question.selected_answer === question.correct_answer) {
-        setPoints((points) => points + 1);
-      }
-    });
   };
 
   return (
@@ -94,6 +92,6 @@ const App = () => {
       )}
     </div>
   );
-};
+}
 
 export default App;
