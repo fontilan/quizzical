@@ -83,8 +83,8 @@ function App() {
             selectAnswer={selectAnswer}
           />
           <Summary
-            handleClick={handleClick}
             gameEnded={gameEnded}
+            handleClick={handleClick}
             numberOfQuestions={numberOfQuestions}
             points={points}
           />

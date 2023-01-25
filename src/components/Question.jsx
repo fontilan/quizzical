@@ -47,11 +47,11 @@ function Question({
       <div className="question_card--answers">
         {allAnswers.map((answer) => (
           <button
-            type="button"
             className="question_card--answers--answer"
             key={nanoid()}
             onClick={() => selectAnswer(id, answer)}
             style={styles(answer)}
+            type="button"
             value={answer}>
             {decodeURIComponent(answer)}
           </button>
