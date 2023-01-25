@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-const Summary = ({ handleClick, gameEnded, numberOfQuestions, points }) => {
+function Summary({ handleClick, gameEnded, numberOfQuestions, points }) {
   return (
     <div className="summary">
       {gameEnded && (
@@ -13,6 +14,6 @@ const Summary = ({ handleClick, gameEnded, numberOfQuestions, points }) => {
       </button>
     </div>
   );
-};
+}
 
 export default Summary;
