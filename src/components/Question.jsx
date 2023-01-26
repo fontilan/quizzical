@@ -25,7 +25,7 @@ function Question({
       return {
         backgroundColor: '#f8bcbc',
         border: 'none',
-        color: '#8F95B0',
+        color: '#4e546e',
       };
     }
     if (answer === correctAnswer) {
@@ -37,7 +37,7 @@ function Question({
     return {
       backgroundColor: '#f5f7fb',
       border: 'solid 1px #A8B0D1',
-      color: '#8F95B0',
+      color: '#686f92',
     };
   };
 
