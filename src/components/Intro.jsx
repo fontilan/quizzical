@@ -7,15 +7,12 @@ function Intro({ startGame }) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    // option 1
-    console.log(new URLSearchParams(formData).toString());
-    // option 2
     const formJSON = Object.fromEntries(formData.entries());
-    console.log(formJSON);
-    // option 3
-    console.log([...formData.entries()]);
 
-    startGame();
+    const category = formJSON.selectedCategory;
+    const difficulty = formJSON.selectedDifficulty;
+
+    startGame(category, difficulty);
   }
 
   return (
@@ -26,11 +23,11 @@ function Intro({ startGame }) {
         <label>
           Select Category:
           <select name="selectedCategory">
-            <option value="any">Any Category</option>
-            <option value="e-books">Entertainment: Books</option>
-            <option value="e-film">Entertainment: Film</option>
-            <option value="e-music">Entertainment: Music</option>
-            <option value="general">General Knowledge</option>
+            <option value="0">Any Category</option>
+            <option value="9">General Knowledge</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="12">Entertainment: Music</option>
           </select>
         </label>
         <label>

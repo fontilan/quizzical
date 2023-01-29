@@ -14,7 +14,8 @@ function App() {
   const category = 9;
   const numberOfQuestions = 5;
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = async (cat, dif) => {
+    console.log(cat, dif);
     const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     );
@@ -34,11 +35,11 @@ function App() {
     setCurrentQuestions(questions);
   };
 
-  const startNewGame = () => {
+  const startNewGame = (cat, dif) => {
     setPoints(0);
     setGameStarted(true);
     setGameEnded(false);
-    fetchQuestions();
+    fetchQuestions(cat, dif);
   };
 
   const calculatePoints = () => {
