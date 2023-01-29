@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function Intro({ onClick }) {
+function Intro({ startGame }) {
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
@@ -15,7 +15,7 @@ function Intro({ onClick }) {
     // option 3
     console.log([...formData.entries()]);
 
-    onClick();
+    startGame();
   }
 
   return (

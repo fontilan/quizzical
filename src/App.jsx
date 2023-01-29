@@ -76,7 +76,7 @@ function App() {
 
   return (
     <div className="App">
-      {!gameStarted && <Intro onClick={startNewGame} />}
+      {!gameStarted && <Intro startGame={startNewGame} />}
 
       {gameStarted && currentQuestions && (
         <>
