@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 import React from 'react';
 
@@ -16,7 +15,7 @@ function Intro({ startGame, setCategory }) {
       <h1 className="intro--title">Quizzical</h1>
       <p className="intro--description">See how good you are with trivia!</p>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="selectedCategory">
           Select Category:
           <select name="selectedCategory" onChange={handleCatChange}>
             <option value="0">Any Category</option>
@@ -26,7 +25,7 @@ function Intro({ startGame, setCategory }) {
             <option value="12">Entertainment: Music</option>
           </select>
         </label>
-        <label>
+        <label htmlFor="selectedDifficulty">
           Difficulty
           <select name="selectedDifficulty">
             <option value="any">Any Difficulty</option>
