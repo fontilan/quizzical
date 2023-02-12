@@ -14,9 +14,9 @@ function Intro({ startGame, setCategory }) {
     <div className="intro">
       <h1 className="intro--title">Quizzical</h1>
       <p className="intro--description">See how good you are with trivia!</p>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="selectedCategory">
-          Select Category:
+      <form className="intro--form" onSubmit={handleSubmit}>
+        <label className="intro--label" htmlFor="selectedCategory">
+          Category:
           <select name="selectedCategory" onChange={handleCatChange}>
             <option value="0">Any Category</option>
             <option value="9">General Knowledge</option>
@@ -25,15 +25,15 @@ function Intro({ startGame, setCategory }) {
             <option value="12">Entertainment: Music</option>
           </select>
         </label>
-        <label htmlFor="selectedDifficulty">
-          Difficulty
+        {/* <label htmlFor="selectedDifficulty">
+          Difficulty:
           <select name="selectedDifficulty">
             <option value="any">Any Difficulty</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-        </label>
+        </label> */}
         <button type="submit" className="intro--button">
           Start quiz
         </button>
