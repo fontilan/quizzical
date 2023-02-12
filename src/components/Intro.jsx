@@ -17,7 +17,10 @@ function Intro({ startGame, setCategory }) {
       <form className="intro--form" onSubmit={handleSubmit}>
         <label className="intro--label" htmlFor="selectedCategory">
           Category:
-          <select name="selectedCategory" onChange={handleCatChange}>
+          <select
+            className="intro--select"
+            name="selectedCategory"
+            onChange={handleCatChange}>
             <option value="0">Any Category</option>
             <option value="9">General Knowledge</option>
             <option disabled>—</option>
