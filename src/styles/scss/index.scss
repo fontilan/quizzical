@@ -86,19 +86,19 @@ hr {
   text-align: center;
 
   &--title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
   }
 
   &--description {
     font-family: $font-secondary;
-    font-size: 1.75rem;
+    font-size: 2rem;
     margin-top: 0.5em;
     text-shadow: 0 0.125em 0.125em rgba(0, 0, 0, 0.25);
   }
 
   &--form {
-    margin-top: 1em;
+    margin-top: 3em;
   }
 
   &--label {
@@ -121,7 +121,7 @@ hr {
     cursor: pointer;
     font-family: $font-secondary;
     font-weight: 500;
-    margin-top: 2.5em;
+    margin-top: 4em;
     padding: 1em 3em;
   }
 }
