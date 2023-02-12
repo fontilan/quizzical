@@ -84,8 +84,6 @@ hr {
 }
 .intro--label {
   display: block;
-  gap: 1em;
-  justify-content: space-between;
   margin-top: 0.5em;
 }
 .intro--select {
