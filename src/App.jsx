@@ -10,14 +10,15 @@ function App() {
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
+  const [category, setCategory] = useState(9);
 
-  const category = 9;
   const numberOfQuestions = 5;
 
   const fetchQuestions = async () => {
     const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     );
+
     const data = await response.json();
     const questions = [];
     data.results.forEach((q) => {
@@ -76,7 +77,9 @@ function App() {
 
   return (
     <div className="App">
-      {!gameStarted && <Intro onClick={startNewGame} />}
+      {!gameStarted && (
+        <Intro startGame={startNewGame} setCategory={setCategory} />
+      )}
 
       {gameStarted && currentQuestions && (
         <>
