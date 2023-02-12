@@ -70,12 +70,12 @@ hr {
   text-align: center;
 }
 .intro--title {
-  font-weight: 700;
   font-size: 3rem;
+  font-weight: 700;
 }
 .intro--description {
-  font-size: 1.75rem;
   font-family: "Inter", sans-serif;
+  font-size: 1.75rem;
   margin-top: 0.5em;
   text-shadow: 0 0.125em 0.125em rgba(0, 0, 0, 0.25);
 }
@@ -83,10 +83,14 @@ hr {
   margin-top: 1em;
 }
 .intro--label {
-  display: flex;
+  display: block;
   gap: 1em;
   justify-content: space-between;
   margin-top: 0.5em;
+}
+.intro--select {
+  margin-left: 1em;
+  width: 60%;
 }
 .intro--button {
   background-color: #4d5b9e;
