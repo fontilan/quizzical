@@ -10,15 +10,15 @@ function App() {
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
+  const [category, setCategory] = useState(20);
 
-  const category = 9;
   const numberOfQuestions = 5;
 
-  const fetchQuestions = async (cat, dif) => {
-    console.log(cat, dif);
+  const fetchQuestions = async () => {
     const response = await fetch(
       `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&type=multiple&encode=url3986`,
     );
+
     const data = await response.json();
     const questions = [];
     data.results.forEach((q) => {
@@ -35,11 +35,11 @@ function App() {
     setCurrentQuestions(questions);
   };
 
-  const startNewGame = (cat, dif) => {
+  const startNewGame = () => {
     setPoints(0);
     setGameStarted(true);
     setGameEnded(false);
-    fetchQuestions(cat, dif);
+    fetchQuestions();
   };
 
   const calculatePoints = () => {
@@ -77,7 +77,9 @@ function App() {
 
   return (
     <div className="App">
-      {!gameStarted && <Intro startGame={startNewGame} />}
+      {!gameStarted && (
+        <Intro startGame={startNewGame} setCategory={setCategory} />
+      )}
 
       {gameStarted && currentQuestions && (
         <>
