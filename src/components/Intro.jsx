@@ -2,17 +2,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function Intro({ startGame }) {
-  function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJSON = Object.fromEntries(formData.entries());
+function Intro({ startGame, setCategory }) {
+  function handleSubmit() {
+    startGame();
+  }
 
-    const category = formJSON.selectedCategory;
-    const difficulty = formJSON.selectedDifficulty;
-
-    startGame(category, difficulty);
+  function handleCatChange(e) {
+    setCategory(e.target.value);
   }
 
   return (
@@ -22,7 +18,7 @@ function Intro({ startGame }) {
       <form onSubmit={handleSubmit}>
         <label>
           Select Category:
-          <select name="selectedCategory">
+          <select name="selectedCategory" onChange={handleCatChange}>
             <option value="0">Any Category</option>
             <option value="9">General Knowledge</option>
             <option value="10">Entertainment: Books</option>
