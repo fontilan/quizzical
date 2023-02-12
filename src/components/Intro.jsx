@@ -23,7 +23,6 @@ function Intro({ startGame, setCategory }) {
             onChange={handleCatChange}>
             <option value="0">Any Category</option>
             <option value="9">General Knowledge</option>
-            <option disabled>—</option>
             <option value="10">Entertainment: Books</option>
             <option value="11">Entertainment: Film</option>
             <option value="12">Entertainment: Music</option>
