@@ -10,7 +10,7 @@ function App() {
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
-  const [category, setCategory] = useState(20);
+  const [category, setCategory] = useState(9);
 
   const numberOfQuestions = 5;
 
