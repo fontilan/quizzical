@@ -15,7 +15,6 @@ function App() {
     const response = await fetch(
       `https://opentdb.com/api.php?amount=5&category=${category}&type=multiple&encode=url3986`,
     );
-
     const data = await response.json();
     const questions = [];
     data.results.forEach((q) => {
