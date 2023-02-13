@@ -7,6 +7,7 @@ import Summary from './components/Summary';
 function App() {
   const [category, setCategory] = useState(0);
   const [currentQuestions, setCurrentQuestions] = useState();
+  const [difficulty, setDifficulty] = useState('any');
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
@@ -20,7 +21,12 @@ function App() {
         `https://opentdb.com/api.php?amount=5&category=${category}&type=multiple&encode=url3986`,
       );
     }
-  }, [category]);
+    if (difficulty !== 'any') {
+      setUrl(
+        `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=multiple&encode=url3986`,
+      );
+    }
+  }, [category, difficulty]);
 
   const fetchQuestions = async () => {
     const response = await fetch(url);
@@ -83,9 +89,12 @@ function App() {
   return (
     <div className="App">
       {!gameStarted && (
-        <Intro startGame={startNewGame} setCategory={setCategory} />
+        <Intro
+          setCategory={setCategory}
+          setDifficulty={setDifficulty}
+          startGame={startNewGame}
+        />
       )}
-
       {gameStarted && currentQuestions && (
         <>
           <Questions
