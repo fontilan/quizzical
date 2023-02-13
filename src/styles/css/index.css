@@ -3,12 +3,6 @@
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 * {
   margin: 0;
 }
@@ -22,20 +16,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-#root,
-#__next {
-  isolation: isolate;
-}
-
 /*
   VARIABLES
+*/
+/*
+  MAIN
 */
 html {
   display: grid;
@@ -57,6 +42,12 @@ hr {
   border: 0;
   height: 2px;
   margin-top: 1.5em;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 500;
+  font: inherit;
 }
 
 /*
@@ -87,6 +78,7 @@ hr {
   margin-top: 0.5em;
 }
 .intro--select {
+  font: inherit;
   margin-left: 1em;
   width: 60%;
 }
@@ -95,9 +87,7 @@ hr {
   border-radius: 0.875em;
   border: none;
   color: #f5f7fb;
-  cursor: pointer;
   font-family: "Inter", sans-serif;
-  font-weight: 500;
   margin-top: 4em;
   padding: 1em 3em;
 }
@@ -125,7 +115,6 @@ hr {
   border-radius: 0.875em;
   border: solid 1px #4d5b9e;
   color: #293264;
-  cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
   min-width: 100px;
@@ -133,7 +122,7 @@ hr {
 }
 
 /*
-SUMMARY SECTION
+  SUMMARY SECTION
 */
 .summary {
   align-items: center;
@@ -150,13 +139,11 @@ SUMMARY SECTION
   border-radius: 0.875em;
   border: none;
   color: #f5f7fb;
-  cursor: pointer;
-  font-weight: 500;
   padding: 1em 3em;
 }
 
 /*
-MEDIA QUERIES
+  MEDIA QUERIES
 */
 @media (min-width: 640px) {
   .question_card--answers {
