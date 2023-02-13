@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Intro from './components/Intro';
 import Questions from './components/Questions';
 import Summary from './components/Summary';
 
 function App() {
-  const [category, setCategory] = useState(9);
+  const [category, setCategory] = useState(0);
   const [currentQuestions, setCurrentQuestions] = useState();
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
+  const [url, setUrl] = useState(
+    'https://opentdb.com/api.php?amount=5&type=multiple&encode=url3986',
+  );
+
+  useEffect(() => {
+    if (category !== 0) {
+      setUrl(
+        `https://opentdb.com/api.php?amount=5&category=${category}&type=multiple&encode=url3986`,
+      );
+    }
+  }, [category]);
 
   const fetchQuestions = async () => {
-    const response = await fetch(
-      `https://opentdb.com/api.php?amount=5&category=${category}&type=multiple&encode=url3986`,
-    );
+    const response = await fetch(url);
     const data = await response.json();
     const questions = [];
     data.results.forEach((q) => {
