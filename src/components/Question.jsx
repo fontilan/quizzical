@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 function Question({
@@ -61,5 +61,15 @@ function Question({
     </div>
   );
 }
+
+Question.propTypes = {
+  allAnswers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  correctAnswer: PropTypes.string.isRequired,
+  gameEnded: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  question: PropTypes.string.isRequired,
+  selectAnswer: PropTypes.func.isRequired,
+  selectedAnswer: PropTypes.string.isRequired,
+};
 
 export default Question;

@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Summary({ handleClick, gameEnded, points }) {
+function Summary({ gameEnded, handleClick, points }) {
   return (
     <div className="summary">
       {gameEnded && (
@@ -13,5 +13,11 @@ function Summary({ handleClick, gameEnded, points }) {
     </div>
   );
 }
+
+Summary.propTypes = {
+  gameEnded: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  points: PropTypes.number.isRequired,
+};
 
 export default Summary;

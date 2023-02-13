@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Intro({ startGame, setCategory }) {
   function handleSubmit() {
@@ -64,5 +64,10 @@ function Intro({ startGame, setCategory }) {
     </div>
   );
 }
+
+Intro.propTypes = {
+  startGame: PropTypes.func.isRequired,
+  setCategory: PropTypes.func.isRequired,
+};
 
 export default Intro;

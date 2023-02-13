@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Question from './Question';
 
 function Questions({ currentQuestions, gameEnded, selectAnswer }) {
@@ -20,5 +20,15 @@ function Questions({ currentQuestions, gameEnded, selectAnswer }) {
     </div>
   );
 }
+
+Questions.propTypes = {
+  currentQuestions: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+    ),
+  ).isRequired,
+  gameEnded: PropTypes.bool.isRequired,
+  selectAnswer: PropTypes.func.isRequired,
+};
 
 export default Questions;
