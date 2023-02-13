@@ -42,12 +42,12 @@ function Question({
   };
 
   return (
-    <div className="question_card">
-      <p className="question_card--question">{decodeURIComponent(question)}</p>
-      <div className="question_card--answers">
+    <div className="question-card">
+      <p className="question-card__question">{decodeURIComponent(question)}</p>
+      <div className="question-card__answers">
         {allAnswers.map((answer) => (
           <button
-            className="question_card--answers--answer"
+            className="question-card__answer"
             key={nanoid()}
             onClick={() => selectAnswer(id, answer)}
             style={styles(answer)}

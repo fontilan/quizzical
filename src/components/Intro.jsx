@@ -12,13 +12,13 @@ function Intro({ startGame, setCategory }) {
 
   return (
     <div className="intro">
-      <h1 className="intro--title">Quizzical</h1>
-      <p className="intro--description">See how good you are with trivia!</p>
-      <form className="intro--form" onSubmit={handleSubmit}>
-        <label className="intro--label" htmlFor="selectedCategory">
+      <h1 className="intro__title">Quizzical</h1>
+      <p className="intro__description">See how good you are with trivia!</p>
+      <form className="intro__form" onSubmit={handleSubmit}>
+        <label className="intro__label" htmlFor="selectedCategory">
           Category:
           <select
-            className="intro--select"
+            className="intro__select"
             name="selectedCategory"
             onChange={handleCatChange}>
             <option value="0">Any Category</option>
@@ -57,7 +57,7 @@ function Intro({ startGame, setCategory }) {
             <option value="hard">Hard</option>
           </select>
         </label> */}
-        <button type="submit" className="intro--button">
+        <button type="submit" className="intro__button">
           Start quiz
         </button>
       </form>

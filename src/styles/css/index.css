@@ -60,29 +60,29 @@ button {
   justify-content: center;
   text-align: center;
 }
-.intro--title {
+.intro__title {
   font-size: 4rem;
   font-weight: 700;
 }
-.intro--description {
+.intro__description {
   font-family: "Inter", sans-serif;
   font-size: 2rem;
   margin-top: 0.5em;
   text-shadow: 0 0.125em 0.125em rgba(0, 0, 0, 0.25);
 }
-.intro--form {
+.intro__form {
   margin-top: 3em;
 }
-.intro--label {
+.intro__label {
   display: block;
   margin-top: 0.5em;
 }
-.intro--select {
+.intro__select {
   font: inherit;
   margin-left: 1em;
   width: 60%;
 }
-.intro--button {
+.intro__button {
   background-color: #4d5b9e;
   border-radius: 0.875em;
   border: none;
@@ -95,14 +95,14 @@ button {
 /*
   QUESTIONS
 */
-.question_card {
+.question-card {
   margin-bottom: 1.5em;
 }
-.question_card--question {
+.question-card__question {
   font-size: 1.25rem;
   font-weight: 700;
 }
-.question_card--answers {
+.question-card__answers {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -110,7 +110,7 @@ button {
   margin-top: 0.75em;
   word-wrap: break-word;
 }
-.question_card--answers--answer {
+.question-card__answer {
   background-color: #ffffff;
   border-radius: 0.875em;
   border: solid 1px #4d5b9e;
@@ -130,11 +130,11 @@ button {
   gap: 0.75em;
   justify-content: space-around;
 }
-.summary--text {
+.summary__text {
   color: #293264;
   font-weight: 700;
 }
-.summary--button {
+.summary__button {
   background-color: #4d5b9e;
   border-radius: 0.875em;
   border: none;
@@ -146,7 +146,7 @@ button {
   MEDIA QUERIES
 */
 @media (min-width: 640px) {
-  .question_card--answers {
+  .question-card__answers {
     display: flex;
     flex-direction: row;
     gap: 1em;
