@@ -58,7 +58,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 }
 .intro__title {
   font-size: 4rem;
@@ -72,10 +71,12 @@ button {
 }
 .intro__form {
   margin-top: 3em;
+  text-align: center;
 }
 .intro__label {
   display: block;
-  margin-top: 0.5em;
+  margin-top: 0.75em;
+  text-align: right;
 }
 .intro__select {
   font: inherit;
