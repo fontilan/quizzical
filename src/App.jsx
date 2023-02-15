@@ -39,27 +39,26 @@ function App() {
     const data = await response.json();
     const questions = [];
     data.results.forEach((q) => {
+      // for multiple choice questions: sort the answers randomly
+      // for true/false questions: make True the first answer
+      let sortedAnswers = [];
       if (q.type === 'multiple') {
-        questions.push({
-          id: nanoid(),
-          question: q.question,
-          correct_answer: q.correct_answer,
-          all_answers: [...q.incorrect_answers, q.correct_answer].sort(
-            () => Math.random() - 0.5,
-          ),
-          selected_answer: '',
-        });
+        sortedAnswers = [...q.incorrect_answers, q.correct_answer].sort(
+          () => Math.random() - 0.5,
+        );
       } else {
-        questions.push({
-          id: nanoid(),
-          question: q.question,
-          correct_answer: q.correct_answer,
-          all_answers: [...q.incorrect_answers, q.correct_answer]
-            .sort()
-            .reverse(),
-          selected_answer: '',
-        });
+        sortedAnswers = [...q.incorrect_answers, q.correct_answer]
+          .sort()
+          .reverse();
       }
+
+      questions.push({
+        id: nanoid(),
+        question: q.question,
+        correct_answer: q.correct_answer,
+        selected_answer: '',
+        all_answers: sortedAnswers,
+      });
     });
     setCurrentQuestions(questions);
   };
