@@ -39,15 +39,27 @@ function App() {
     const data = await response.json();
     const questions = [];
     data.results.forEach((q) => {
-      questions.push({
-        id: nanoid(),
-        question: q.question,
-        correct_answer: q.correct_answer,
-        all_answers: [...q.incorrect_answers, q.correct_answer].sort(
-          () => Math.random() - 0.5,
-        ),
-        selected_answer: '',
-      });
+      if (q.type === 'multiple') {
+        questions.push({
+          id: nanoid(),
+          question: q.question,
+          correct_answer: q.correct_answer,
+          all_answers: [...q.incorrect_answers, q.correct_answer].sort(
+            () => Math.random() - 0.5,
+          ),
+          selected_answer: '',
+        });
+      } else {
+        questions.push({
+          id: nanoid(),
+          question: q.question,
+          correct_answer: q.correct_answer,
+          all_answers: [...q.incorrect_answers, q.correct_answer]
+            .sort()
+            .reverse(),
+          selected_answer: '',
+        });
+      }
     });
     setCurrentQuestions(questions);
   };
