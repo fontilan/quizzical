@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Intro({ setCategory, setDifficulty, startGame }) {
+function Intro({ setCategory, setDifficulty, setType, startGame }) {
   function handleCatChange(e) {
     setCategory(e.target.value);
   }
 
   function handleDiffChange(e) {
     setDifficulty(e.target.value);
+  }
+
+  function handleTypeChange(e) {
+    setType(e.target.value);
   }
 
   function handleSubmit() {
@@ -58,10 +62,21 @@ function Intro({ setCategory, setDifficulty, startGame }) {
             className="intro__select"
             name="selectedDifficulty"
             onChange={handleDiffChange}>
-            <option value="any">Any Difficulty</option>
+            <option value="0">Any Difficulty</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
+          </select>
+        </label>
+        <label className="intro__label" htmlFor="selectedType">
+          Type:
+          <select
+            className="intro__select"
+            name="selectedType"
+            onChange={handleTypeChange}>
+            <option value="0">Any Type</option>
+            <option value="multiple">Multiple Choice</option>
+            <option value="boolean">True / False</option>
           </select>
         </label>
         <button type="submit" className="intro__button">
@@ -75,6 +90,7 @@ function Intro({ setCategory, setDifficulty, startGame }) {
 Intro.propTypes = {
   setCategory: PropTypes.func.isRequired,
   setDifficulty: PropTypes.func.isRequired,
+  setType: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
 };
 

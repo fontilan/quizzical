@@ -7,26 +7,32 @@ import Summary from './components/Summary';
 function App() {
   const [category, setCategory] = useState(0);
   const [currentQuestions, setCurrentQuestions] = useState();
-  const [difficulty, setDifficulty] = useState('any');
+  const [difficulty, setDifficulty] = useState(0);
   const [gameEnded, setGameEnded] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [points, setPoints] = useState(0);
+  const [type, setType] = useState(0);
   const [url, setUrl] = useState(
-    'https://opentdb.com/api.php?amount=5&type=multiple&encode=url3986',
+    'https://opentdb.com/api.php?amount=5&encode=url3986',
   );
 
   useEffect(() => {
     if (category !== 0) {
       setUrl(
-        `https://opentdb.com/api.php?amount=5&category=${category}&type=multiple&encode=url3986`,
+        `https://opentdb.com/api.php?amount=5&category=${category}&encode=url3986`,
       );
     }
-    if (difficulty !== 'any') {
+    if (difficulty !== 0) {
       setUrl(
-        `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=multiple&encode=url3986`,
+        `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&encode=url3986`,
       );
     }
-  }, [category, difficulty]);
+    if (type !== 0) {
+      setUrl(
+        `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=${type}&encode=url3986`,
+      );
+    }
+  }, [category, difficulty, type]);
 
   const fetchQuestions = async () => {
     const response = await fetch(url);
@@ -96,6 +102,7 @@ function App() {
         <Intro
           setCategory={setCategory}
           setDifficulty={setDifficulty}
+          setType={setType}
           startGame={startNewGame}
         />
       )}
