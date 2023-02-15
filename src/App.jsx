@@ -51,6 +51,10 @@ function App() {
     setGameStarted(true);
     setGameEnded(false);
     fetchQuestions();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const calculatePoints = () => {
