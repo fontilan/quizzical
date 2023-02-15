@@ -17,17 +17,7 @@ function App() {
   );
 
   useEffect(() => {
-    if (category !== 0) {
-      setUrl(
-        `https://opentdb.com/api.php?amount=5&category=${category}&encode=url3986`,
-      );
-    }
-    if (difficulty !== 0) {
-      setUrl(
-        `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&encode=url3986`,
-      );
-    }
-    if (type !== 0) {
+    if (category !== 0 || difficulty !== 0 || type !== 0) {
       setUrl(
         `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=${type}&encode=url3986`,
       );
