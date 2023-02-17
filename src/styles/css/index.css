@@ -10,6 +10,8 @@
 }
 
 html {
+  background: fixed url(/src/images/blob-top.svg) top -7em right -7em no-repeat, fixed url(/src/images/blob-bottom.svg) bottom -7em left -7em no-repeat;
+  background-color: #f5f7fb;
   display: grid;
   font-family: "Karla", sans-serif;
   height: 100%;
@@ -17,8 +19,6 @@ html {
 }
 
 body {
-  background: fixed url(/src/images/blob-top.svg) top -6em right -6em no-repeat, fixed url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
-  background-color: #f5f7fb;
   color: #293264;
   font-size: 1rem;
   line-height: 1.5;

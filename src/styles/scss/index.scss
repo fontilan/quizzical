@@ -24,6 +24,9 @@ $clr-white-primary: #f5f7fb;
 }
 
 html {
+  background: fixed url(/src/images/blob-top.svg) top -7em right -7em no-repeat,
+    fixed url(/src/images/blob-bottom.svg) bottom -7em left -7em no-repeat;
+  background-color: $clr-white-primary;
   display: grid;
   font-family: $font-primary;
   height: 100%;
@@ -31,9 +34,6 @@ html {
 }
 
 body {
-  background: fixed url(/src/images/blob-top.svg) top -6em right -6em no-repeat,
-    fixed url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
-  background-color: $clr-white-primary;
   color: $clr-blue-darker;
   font-size: 1rem;
   line-height: 1.5;
