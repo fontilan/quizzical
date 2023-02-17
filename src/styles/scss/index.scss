@@ -1,29 +1,12 @@
 @import url('https://rsms.me/inter/inter.css');
 
 /*
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/
-*/
-
-* {
-  margin: 0;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-/*
   VARIABLES
 */
 $font-primary: 'Karla', sans-serif;
 $font-secondary: 'Inter', sans-serif;
 
+$clr-black: #1c1c1c;
 $clr-blue-darker: #293264;
 $clr-blue-lighter: #d6dbf5;
 $clr-blue-primary: #4d5b9e;
@@ -32,14 +15,18 @@ $clr-red: #f8bcbc;
 $clr-white-darker: #dbdef0;
 $clr-white-lighter: #ffffff;
 $clr-white-primary: #f5f7fb;
-$clr-black: #1c1c1c;
 
 /*
   MAIN
 */
+* {
+  margin: 0;
+}
+
 html {
   display: grid;
   font-family: $font-primary;
+  height: 100%;
   place-items: center;
 }
 
@@ -48,7 +35,8 @@ body {
     fixed url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
   background-color: $clr-white-primary;
   color: $clr-blue-darker;
-  font-size: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
   padding: 2em 0;
   width: min(95vw, 800px);
 }
@@ -111,6 +99,7 @@ button {
     border: none;
     color: $clr-white-primary;
     font-family: $font-secondary;
+    font-size: 1.25rem;
     margin-top: 4em;
     padding: 1em 3em;
   }
@@ -167,6 +156,7 @@ button {
     border-radius: 0.875em;
     border: none;
     color: $clr-white-primary;
+    font-size: 1.25rem;
     padding: 1em 3em;
   }
 }
