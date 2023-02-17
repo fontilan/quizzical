@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background: url(/src/images/blob-top.svg) top -6em right -6em no-repeat, url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
+  background: fixed url(/src/images/blob-top.svg) top -6em right -6em no-repeat, fixed url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
   background-color: #f5f7fb;
   color: #293264;
   font-size: 20px;

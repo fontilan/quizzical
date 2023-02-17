@@ -44,8 +44,8 @@ html {
 }
 
 body {
-  background: url(/src/images/blob-top.svg) top -6em right -6em no-repeat,
-    url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
+  background: fixed url(/src/images/blob-top.svg) top -6em right -6em no-repeat,
+    fixed url(/src/images/blob-bottom.svg) bottom -6em left -6em no-repeat;
   background-color: $clr-white-primary;
   color: $clr-blue-darker;
   font-size: 20px;
